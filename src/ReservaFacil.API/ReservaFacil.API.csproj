@@ -15,9 +15,4 @@
   <ItemGroup>
     <ProjectReference Include="..\ReservaFacil.Data\ReservaFacil.Data.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Security\TokenHandler.cs" />
-  </ItemGroup>
-
 </Project>
