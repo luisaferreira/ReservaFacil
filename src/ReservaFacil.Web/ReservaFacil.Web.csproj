@@ -6,4 +6,20 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Remove="Pages\Shared\Components\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Pages\Shared\Components\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Pages\Shared\Components\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Pages\Shared\Components\**" />
+    </ItemGroup>
+
 </Project>
