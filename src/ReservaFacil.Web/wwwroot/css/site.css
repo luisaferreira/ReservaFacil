@@ -53,6 +53,7 @@ body {
   .sidebar {
     position: relative;
     width: 100%;
+    height: fit-content;
   }
 }
 
