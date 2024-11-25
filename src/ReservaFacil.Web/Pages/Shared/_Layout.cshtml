@@ -1,0 +1,70 @@
+﻿@{
+ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="~/lib/jquery/dist/jquery.slim.min.js"></script> 
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body>
+
+<div class="content-container">
+    <!-- Menu lateral -->
+    <div class="sidebar d-flex flex-column flex-shrink-0 bg-body-tertiary">
+        <a href="/" class="d-block p-3 link-body-emphasis text-decoration-none">
+            <i class="fas fa-apple-alt" style="font-size: 30px;"></i>
+        </a>
+
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+            <li class="nav-item menu-item-spacing">
+                <a href="#" class="nav-link py-3 border-bottom rounded-0" aria-current="page" data-bs-toggle="tooltip" data-bs-placement="right" title="Página Inicial">
+                    <img src="~/icons/navigation/home_fill.svg" alt="Home Icon" />
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right" title="Controle de Reservas">
+                    <img src="~/icons/navigation/room_outline.svg" alt="Room Icon" />
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right" title="Controle de Acesso">
+                    <img src="~/icons/navigation/user_outline.svg" alt="User Icon" />
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right" title="Notificações">
+                    <img src="~/icons/navigation/bell_outline.svg" alt="Bell Icon" />
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="right" title="Configurações">
+                    <img src="~/icons/navigation/gear_outline.svg" alt="Gear Icon" />
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="main-content">
+        @RenderBody()
+    </div>
+</div>
+
+<script src="~/js/site.js"></script>
+
+</body>
+</html>

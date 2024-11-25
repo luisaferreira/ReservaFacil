@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservaFacil.Domain", "..\R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservaFacil.Data", "..\ReservaFacil.Data\ReservaFacil.Data.csproj", "{252A83D6-6E4F-47DD-8898-D18714A2CC66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservaFacil.Web", "..\ReservaFacil.Web\ReservaFacil.Web.csproj", "{0AFE7E4C-7554-46CD-86B5-EDC65A815BBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{252A83D6-6E4F-47DD-8898-D18714A2CC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{252A83D6-6E4F-47DD-8898-D18714A2CC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{252A83D6-6E4F-47DD-8898-D18714A2CC66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AFE7E4C-7554-46CD-86B5-EDC65A815BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AFE7E4C-7554-46CD-86B5-EDC65A815BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AFE7E4C-7554-46CD-86B5-EDC65A815BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AFE7E4C-7554-46CD-86B5-EDC65A815BBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
