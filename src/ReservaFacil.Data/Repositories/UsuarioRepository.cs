@@ -8,24 +8,23 @@ namespace ReservaFacil.Data.Repositories
     //TODO: Implementar a injeção de dependência
     public class UsuarioRepository
     {
-        const string connectionString = "DefaultConnection";
+        const string ConnectionString = "";
         public UsuarioRepository() { }
 
         public int Inserir(Usuario usuario)
         {
             var sql = new StringBuilder();
-            sql.AppendLine("INSERT INTO Usuario");
-            sql.AppendLine("VALUES(@IdPerfil, @Nome, @Email, @Senha, @Matricula, @Ativo, @CriadoEm);");
-            sql.AppendLine("SELECT CAST(scope_identity() AS INT)");
+            sql.AppendLine("INSERT INTO Usuario (PerfilId, Nome, Email, Matricula, Ativo, CriadoEm) ");
+            sql.AppendLine("VALUES(@PerfilId, @Nome, @Email, @Matricula, @Ativo, @CriadoEm); ");
+            sql.AppendLine("SELECT CAST(scope_identity() AS INT);");
 
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 var id = connection.Execute(sql.ToString(), new
                 {
-                    usuario.IdPerfil,
+                    usuario.PerfilId,
                     usuario.Nome,
                     usuario.Email,
-                    usuario.Senha,
                     usuario.Matricula,
                     usuario.Ativo,
                     usuario.CriadoEm

@@ -1,63 +1,25 @@
-﻿using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace ReservaFacil.Web.Models;
 
 public class UsuarioModel
 {
-    public string? Nome { get; }
-    public string? Email { get; }
-    public string? Matricula { get; }
-    public int PerfilId { get; set; }
-    public List<int> PermissaoIds { get; } 
-
-    public List<string> Errors { get; } = [];
+    [Required(ErrorMessage = "O campo Nome é obrigatório.")]
+    [StringLength(100, MinimumLength = 3, ErrorMessage = "O nome deve ter entre 3 e 100 caracteres.")]
+    public string? Nome { get; set; }
     
-    public UsuarioModel()
-    {
-        PermissaoIds = new List<int>();
-    }
+    [Required(ErrorMessage = "O campo E-mail é obrigatório.")]
+    [EmailAddress(ErrorMessage = "O e-mail deve ser um endereço válido.")]
+    public string? Email { get; set; }
     
-    public UsuarioModel(string nome, string email, string matricula, string perfilIdString, List<int> permissoesId)
-    {
-        ValidaUsuario(nome, email, matricula, perfilIdString);
-        
-        Nome = nome;
-        Email = email;
-        Matricula = matricula;
-        PermissaoIds = permissoesId;
-    }
+    [Required(ErrorMessage = "O campo Matrícula é obrigatório.")]
+    [RegularExpression(@"^[A-Za-z0-9]+$", ErrorMessage = "A matrícula deve conter apenas letras e números.")]
+    public string? Matricula { get; set; }
     
-    private static bool EmailValido(string email)
-    {
-        var emailRegex = new Regex(
-            @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", 
-            RegexOptions.Compiled);
-        
-        return emailRegex.IsMatch(email);
-    }
+    [Required(ErrorMessage = "O campo Perfil é obrigatório.")]
+    public int? PerfilId { get; set; }
 
-    private string ValidaUsuario(string nome, string email, string matricula, string perfilIdString)
-    {
-        StringBuilder erros = new StringBuilder();
-        
-        if (string.IsNullOrEmpty(nome))
-            Errors.Add("Nome não pode ser vazio.");
-
-        if (string.IsNullOrEmpty(email))
-            Errors.Add("E-mail não pode ser vazio.");
-        
-        if(!EmailValido(email))
-            Errors.Add("E-mail fornecido é inválido.");
-
-        if (string.IsNullOrEmpty(matricula))
-            Errors.Add("Matrícula não pode ser vazia.");
-        
-        if (string.IsNullOrEmpty(perfilIdString) || !int.TryParse(perfilIdString, out int perfilId) || perfilId <= 0)
-            Errors.Add("Perfil não pode ser vazio.");
-        else 
-            PerfilId = perfilId; 
-
-        return erros.ToString();
-    }
+    public List<int> PermissaoIds { get; set; } = [];
 }

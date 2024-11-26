@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ReservaFacil.Web.Models.UsuarioModel
+
+@{
     Layout = "_Layout";
     ViewData["Title"] = "Adicionar Usuário";
 }
@@ -7,22 +9,8 @@
 
 @await Html.PartialAsync("_FormsHeader", "Adicionar Usuário")
 
-@* @if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["SuccessMessage"]
-    </div>
-}
-
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["ErrorMessage"]
-    </div>
-} *@
-
 <div class="container mt-4">
-    <form method="post">
+    <form method="post" id="userForm" novalidate>
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="Nome" class="form-label">Nome:</label>
@@ -37,7 +25,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="Email" class="form-label">E-mail:</label>
-                <input type="email" class="form-control" id="Email" name="Email" placeholder="Digite o e-mail"/>
+                <input type="text" class="form-control" id="Email" name="Email" placeholder="Digite o e-mail"/>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="Perfil" class="form-label">Perfil:</label>
@@ -81,3 +69,36 @@
         </div>
     </form>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $("form").submit(function(e) {
+            e.preventDefault(); 
+
+            var form = $(this); 
+            $.post("/Usuario/Cadastro", form.serialize())  
+                .done(function(response) {
+                    if (response.success) {
+                       // bootbox.alert(response.message);
+                    } else {
+                    console.log(response);
+                        let errorMessage = "";  
+
+                        response.errors.forEach(function(error) {
+                            if (error) {
+                                errorMessage += error + "<br>";
+                            }
+                        });
+
+                        document.getElementById("modalErrorMessages").innerHTML = errorMessage;
+
+                        let errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                        errorModal.show();
+                    }
+                })
+                .fail(function() {
+                    bootbox.alert("Ocorreu um erro ao tentar processar sua solicitação.");
+                });
+        });
+    });
+</script>
