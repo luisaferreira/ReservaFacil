@@ -1,6 +1,8 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using ReservaFacil.Data.Repositories;
+using ReservaFacil.Domain.Interfaces.Repositories;
 using TokenHandler = ReservaFacil.API.Security.TokenHandler;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,6 +37,7 @@ builder.Services.AddAuthentication(options =>
     });
 
 builder.Services.AddScoped<TokenHandler>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 var app = builder.Build();
 

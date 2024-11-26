@@ -1,7 +1,9 @@
 ﻿using ReservaFacil.Domain.Models.Shared;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReservaFacil.Domain.Models
 {
+    [Table("Usuario")]
     public class Usuario : Base
     {
         public int IdPerfil { get; set; }
