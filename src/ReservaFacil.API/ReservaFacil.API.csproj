@@ -14,5 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ReservaFacil.Data\ReservaFacil.Data.csproj" />
+    <ProjectReference Include="..\ReservaFacil.IoC\ReservaFacil.IoC.csproj" />
   </ItemGroup>
 </Project>

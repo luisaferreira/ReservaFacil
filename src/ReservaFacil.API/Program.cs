@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using ReservaFacil.IoC;
 using TokenHandler = ReservaFacil.API.Security.TokenHandler;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +21,7 @@ builder.Services.AddAuthentication(options =>
     .AddJwtBearer(options =>
     {
         var chaveSeguranca = Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("ReservaFacil_JwtSettings_Secret"));
-        var issuer = Environment.GetEnvironmentVariable("ReservaFacil_JwtSettings_Issuer");
+        var issuer =  Environment.GetEnvironmentVariable("ReservaFacil_JwtSettings_Issuer");
         var audience = Environment.GetEnvironmentVariable("ReservaFacil_JwtSettings_Audience");
 
         options.TokenValidationParameters = new TokenValidationParameters
@@ -35,6 +36,7 @@ builder.Services.AddAuthentication(options =>
     });
 
 builder.Services.AddScoped<TokenHandler>();
+builder.Services.RegisterStaticDependencies();
 
 var app = builder.Build();
 

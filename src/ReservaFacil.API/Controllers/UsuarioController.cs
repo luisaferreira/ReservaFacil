@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ReservaFacil.Data.Repositories;
+using ReservaFacil.Domain.Interfaces.Repositories;
 using ReservaFacil.Domain.Models;
 
 namespace ReservaFacil.API.Controllers
@@ -9,28 +9,20 @@ namespace ReservaFacil.API.Controllers
     [Route("/[controller]")]
     public class UsuarioController : Controller
     {
-        private readonly UsuarioRepository _usuarioRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
 
 
-        public UsuarioController()
+        public UsuarioController(IUsuarioRepository usuarioRepository)
         {
-            _usuarioRepository = new UsuarioRepository();
+            _usuarioRepository = usuarioRepository;
         }
 
         [HttpPost]
-        public IActionResult Inserir([FromBody] Usuario usuario)
+        public IActionResult Inserir(Usuario usuario)
         {
-            try
-            {
-                Debug.WriteLine("Caiu na controller da api...");
-                _usuarioRepository.Inserir(usuario);
-                return StatusCode(200);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex);
-            }
-            
+            _usuarioRepository.InserirAsync(usuario);
+
+            return StatusCode(200);
         }
     }
 }
