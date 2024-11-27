@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ReservaFacil.Web.Models;
+using ReservaFacil.Web.DTOs;
 using ReservaFacil.Web.Services;
 
 namespace ReservaFacil.Web.Controllers
@@ -18,14 +18,13 @@ namespace ReservaFacil.Web.Controllers
             return View();
         }
 
-
         public IActionResult Cadastro()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Cadastro(UsuarioModel usuario)
+        public async Task<IActionResult> Cadastro(Usuario usuario)
         {
             if (ModelState.IsValid)
             {
