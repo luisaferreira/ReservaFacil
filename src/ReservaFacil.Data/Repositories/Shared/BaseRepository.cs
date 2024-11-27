@@ -6,7 +6,7 @@ using ReservaFacil.Domain.Models.Shared;
 
 namespace ReservaFacil.Data.Repositories.Shared
 {
-    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : Base
+    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
         protected Context _context;
 
@@ -15,14 +15,16 @@ namespace ReservaFacil.Data.Repositories.Shared
             _context = new Context(configuration);
         }
 
-        public virtual async Task Atualizar(int id, TEntity t)
+        public virtual void Atualizar(TEntity t)
         {
-            throw new NotImplementedException();
+            using var connection = new SqlConnection(_context.ConnectionString);
+            connection.Update(t);
         }
 
-        public virtual async Task AtualizarAsync(int id, TEntity t)
+        public virtual async Task AtualizarAsync(TEntity t)
         {
-            throw new NotImplementedException();
+            var connection = new SqlConnection(_context.ConnectionString);
+            await connection.UpdateAsync(t);
         }
 
         public void Dispose()
@@ -30,45 +32,60 @@ namespace ReservaFacil.Data.Repositories.Shared
             throw new NotImplementedException();
         }
 
-        public virtual async Task Excluir(int id)
+        public virtual bool Excluir(TEntity t)
         {
-            throw new NotImplementedException();
+            var connection = new SqlConnection(_context.ConnectionString);
+            return connection.Delete(t);
         }
 
-        public virtual async Task ExcluirAsync(int id)
+        public virtual async Task<bool> ExcluirAsync(TEntity t)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var connection = new SqlConnection(_context.ConnectionString);
+                return await connection.DeleteAsync(t);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public virtual async Task<int> Inserir(TEntity t)
+        public virtual int Inserir(TEntity t)
         {
-            throw new NotImplementedException();
+            using var connection = new SqlConnection(_context.ConnectionString);
+            return Convert.ToInt32(connection.Insert(t));
         }
 
         public virtual async Task<int> InserirAsync(TEntity t)
         {
             using var connection = new SqlConnection(_context.ConnectionString);
-            return (int)await connection.InsertAsync(t);
+            return Convert.ToInt32(await connection.InsertAsync(t));
         }
 
-        public virtual async Task<IEnumerable<TEntity>> Obter()
+        public virtual IEnumerable<TEntity> Obter()
         {
-            throw new NotImplementedException();
+            var connection = new SqlConnection(_context.ConnectionString);
+            return connection.GetAll<TEntity>();
         }
 
         public virtual async Task<IEnumerable<TEntity>> ObterAsync()
         {
-            throw new NotImplementedException();
+            var connection = new SqlConnection(_context.ConnectionString);
+            return await connection.GetAllAsync<TEntity>();
         }
 
-        public virtual async Task<TEntity> ObterPorId(int id)
+        public virtual TEntity ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            var connection = new SqlConnection(_context.ConnectionString);
+            return connection.Get<TEntity>(id);
         }
 
         public virtual async Task<TEntity> ObterPorIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var connection = new SqlConnection(_context.ConnectionString);
+            return await connection.GetAsync<TEntity>(id);
         }
     }
 }

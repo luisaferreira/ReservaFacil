@@ -2,17 +2,17 @@
 
 namespace ReservaFacil.Domain.Interfaces.Repositories.Shared
 {
-    public interface IBaseRepository<TEntity> : IDisposable where TEntity : Base
+    public interface IBaseRepository<TEntity> : IDisposable where TEntity : class
     {
-        Task Atualizar(int id, TEntity t);
-        Task AtualizarAsync(int id, TEntity t);
-        Task Excluir(int id);
-        Task ExcluirAsync(int id);
-        Task<int> Inserir(TEntity t);
+        void Atualizar(TEntity t);
+        Task AtualizarAsync(TEntity t);
+        bool Excluir(TEntity t);
+        Task<bool> ExcluirAsync(TEntity t);
+        int Inserir(TEntity t);
         Task<int> InserirAsync(TEntity t);
-        Task<IEnumerable<TEntity>> Obter();
+        IEnumerable<TEntity> Obter();
         Task<IEnumerable<TEntity>> ObterAsync();
-        Task<TEntity> ObterPorId(int id);
+        TEntity ObterPorId(int id);
         Task<TEntity> ObterPorIdAsync(int id);
     }
 }

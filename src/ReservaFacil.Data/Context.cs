@@ -12,10 +12,6 @@ namespace ReservaFacil.Data
         }
 
         public string ObterStringConexao(IConfiguration configuration)
-        {
-            var s = configuration.GetSection("ConnectionStrings:ReservaFacil").Value;
-
-            return s;
-        }
+            => configuration.GetSection("ConnectionStrings:ReservaFacil").Value;
     }
 }
