@@ -1,67 +1,120 @@
-:root {
-  --primary-color: #477998;
-}
-
 html {
-  font-size: 14px;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+    color: var(--bs-secondary-color);
+    text-align: end;
 }
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+    text-align: start;
 }
 
 .main-content {
-  padding: 20px;
-  flex: 1;
+    padding: 20px;
+    flex: 1;
 }
-.menu-item-spacing {
-  margin-top: 50px;
-}
+
 .sidebar {
-  width: 4.5rem;
-  height: 100vh;
-  background-color: #f8f9fa;
+    width: 4.5rem;
+    height: 100vh;
+    background-color: #f8f9fa;
 }
+
 .content-container {
-  display: flex;
-  height: 100vh;
+    display: flex;
+    height: 100vh;
 }
 
 @media (max-width: 768px) {
-  .content-container {
-    flex-direction: column;
-  }
+    .content-container {
+        flex-direction: column;
+    }
 
-  .main-content {
-    margin-left: 0;
-  }
+    .main-content {
+        margin-left: 0;
+    }
 
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: fit-content;
-  }
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: fit-content;
+    }
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
+/*Menu Lateral*/
+.menu {
+    height: 100vh;
+    min-width: 4rem;
+    overflow: hidden;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 0 4px 4px rgba(0,0,0, 0.25);
+    transition: min-width 0.3s ease;
+}
 
+.menu:hover {
+    min-width: auto;
+}
 
+.menu-logo {
+    font-size: 2.25rem;
+    margin: 2rem 0 3rem;
+}
+
+.menu-item {
+    padding: .5rem 0;
+    margin: 1rem 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    overflow: hidden;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-item-icon {
+    width: 2rem;
+    transition: transform 0.3s ease;
+}
+
+    .menu-item-icon:hover {
+        transform: scale(1.05);
+    }
+
+.menu-item-descricao {
+    display: none;
+    white-space: nowrap; /* Evita quebra de linha no texto */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateX(-10px); /* Move o texto para a esquerda inicialmente */
+    color: #333;
+    font-size: 1rem;
+}
+
+.menu:hover .menu-item-descricao {
+    display: inline;
+    transform: translateX(0); /* Move a descrição para sua posição normal */
+}
+
+/* Efeito ao passar o mouse nos ícones */
+.menu-item-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Estilo ao passar o mouse no item */
+.menu-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
