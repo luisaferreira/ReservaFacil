@@ -1,8 +1,4 @@
-﻿:root {
-    --primary-color: #477998;
-}
-
-.form-label {
+﻿.form-label {
     font-weight: 600;
     color: #333;
 }
@@ -27,8 +23,8 @@
 }
 
 .form-check-input:checked {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+    background-color: var(--primary-blue-color);
+    border-color: var(--primary-blue-color);
 }
 
 .form-check-label {
@@ -43,7 +39,7 @@
 
 /* Botão */
 .btn {
-    background: var(--primary-color);
+    background: var(--primary-blue-color);
     color: white;
     border: none;
     border-radius: 6px;
@@ -86,7 +82,7 @@
 }
 
 .arrow-top, .arrow-bottom {
-    background-color: var(--primary-color);
+    background-color: var(--primary-blue-color);
     height: 2px;
     position: absolute;
     width: 100%;

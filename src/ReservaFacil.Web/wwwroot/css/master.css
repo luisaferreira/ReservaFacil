@@ -1,22 +1,11 @@
 ﻿:root {
-    --primary-color: #477998;
+    --primary-blue-color: #477998;
     --light-color: #FFF;
 }
 
-.text-color-primary {
-    color: var(--primary-color);
+
+
+.titulo-pagina {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
 }
-
-.text-color-light {
-    color: var(--light-color);
-}
-
-.background-primary {
-    background: var(--primary-color);
-}
-
-.background-light {
-    background: var(--light-color);
-}
-
-
