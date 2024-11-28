@@ -4,6 +4,10 @@
 
 @await Html.PartialAsync("_Header", new { Titulo = "Usuários", PaginaInicial = true })
 
+@section Scripts {
+    <script src="~/js/views/usuario.js"></script>
+}
+
 <div class="container mt-4">
     <div class="text-end">
         <a class="btn btn-primary" href="Usuario/Cadastro">Adicionar Usuário</a>

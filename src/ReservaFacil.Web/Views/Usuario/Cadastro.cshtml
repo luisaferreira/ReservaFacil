@@ -5,6 +5,10 @@
 
 @await Html.PartialAsync("_Header", new { Titulo = "Adicionar Usuário", PaginaInicial = false })
 
+@section Scripts {
+    <script src="~/js/views/usuario.js"></script>
+}
+
 <div class="container mt-4">
     <form method="post">
         <div class="row">
