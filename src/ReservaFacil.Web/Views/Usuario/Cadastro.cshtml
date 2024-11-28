@@ -3,23 +3,7 @@
     ViewData["Title"] = "Adicionar Usuário";
 }
 
-<link rel="stylesheet" href="~/css/formsHeader.css">
-
-@await Html.PartialAsync("_FormsHeader", "Adicionar Usuário")
-
-@* @if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["SuccessMessage"]
-    </div>
-}
-
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["ErrorMessage"]
-    </div>
-} *@
+@await Html.PartialAsync("_Header", new { Titulo = "Adicionar Usuário", PaginaInicial = false })
 
 <div class="container mt-4">
     <form method="post">
@@ -51,7 +35,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 mb-3">
+            <div class="col-md-12">
                 <label for="Permissoes" class="form-label">Permissões:</label>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="GerenciarUsuarios" name="PermissaoIds" value="1"/>
@@ -77,7 +61,7 @@
         <hr />
 
         <div class="mt-4 d-flex justify-content-end">
-            <button type="submit" class="btn btn-custom">Adicionar</button>
+            <button type="submit" class="btn btn-primary">Adicionar</button>
         </div>
     </form>
 </div>

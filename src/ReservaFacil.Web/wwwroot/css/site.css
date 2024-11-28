@@ -1,5 +1,4 @@
-/*Cores*/
-
+/*Variáveis*/
 :root {
     --primary-blue-color: #477998;
     --primary-blue-shade-color: #365d73;
@@ -9,8 +8,10 @@
     --medium-grey-blue-color: #E1E7EB;
     --light-grey-blue-color: #F1F3F4;
     --light-grey-color: #D9D9D9;
+    --primary-font-family: "Inter", sans-serif;
 }
 
+/*Cores*/
 .text-color-primary {
     color: var(--primary-blue-color);
 }
@@ -75,6 +76,7 @@ html {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
 }
+
 /*Containers principais*/
 .content-container {
     display: flex;
@@ -235,11 +237,11 @@ html {
     align-items: center;
 }
 
-.pagination-item-active, .pagination-item:hover {
-    border: none;
-    background: var(--primary-blue-color);
-    color: var(--light-color);
-}
+    .pagination-item-active, .pagination-item:hover {
+        border: none;
+        background: var(--primary-blue-color);
+        color: var(--light-color);
+    }
 
     .pagination-item:active {
         border: none;
@@ -252,4 +254,126 @@ html {
     background: none;
     color: var(--light-grey-color);
     cursor: default;
+}
+
+/*Formulário*/
+.form-label {
+    font-weight: 600;
+}
+
+.form-control, .form-select {
+    border-radius: 5px;
+    border: 1px solid var(--light-grey-color);
+    padding: 12px;
+    font-size: 14px;
+}
+
+    .form-control:focus, .form-select:focus {
+        box-shadow: none;
+        border: 1px solid var(--light-grey-color);
+    }
+
+/*Checkbox*/
+.form-check-input {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--light-grey-color);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+    .form-check-input:checked {
+        background-color: var(--primary-blue-color);
+        border-color: var(--primary-blue-color);
+    }
+
+    .form-check-input:focus {
+        border: 1px solid var(--light-grey-color);
+        box-shadow: none;
+        outline: none;
+    }
+
+.form-check-label {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+label.form-label, label.form-check-label {
+    font-family: var(--primary-font-family);
+    color: var(--dark-blue-color);
+}
+
+/*Header*/
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: .5em;
+}
+
+.arrow {
+    cursor: pointer;
+    width: 20px;
+    position: relative;
+}
+
+.arrow-top, .arrow-bottom {
+    background-color: var(--primary-blue-color);
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    left: -5px;
+    top: 50%;
+}
+
+.arrow-top {
+    transform: rotate(-45deg);
+    transform-origin: bottom left;
+}
+
+.arrow-bottom {
+    transform: rotate(45deg);
+    transform-origin: top left;
+}
+
+    .arrow-top:after, .arrow-bottom:after {
+        background-color: var(--primary-blue-shade-color);
+        content: "";
+        height: 100%;
+        position: absolute;
+        top: 0;
+        transition: all 0.15s;
+    }
+
+.arrow-top:after {
+    left: 100%;
+    right: 0;
+    transition-delay: 0s;
+}
+
+.arrow-bottom:after {
+    left: 0;
+    right: 100%;
+    transition-delay: 0.15s;
+}
+
+.arrow:hover .arrow-top:after {
+    left: 0;
+    transition-delay: 0.15s;
+}
+
+.arrow:hover .arrow-bottom:after {
+    right: 0;
+    transition-delay: 0s;
+}
+
+.arrow:active {
+    transform: scale(0.9);
+}
+
+.titulo-pagina {
+    font-size: 2rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    color: var(--primary-blue-color);
+    margin: 0;
 }
