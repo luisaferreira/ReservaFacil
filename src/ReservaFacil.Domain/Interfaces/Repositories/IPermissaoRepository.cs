@@ -3,4 +3,4 @@ using ReservaFacil.Domain.Models;
 
 namespace ReservaFacil.Domain.Interfaces.Repositories;
 
-public interface IUsuarioPermissaoRepository : IBaseRepository<UsuarioPermissao> { }
+public interface IPermissaoRepository : IBaseRepository<Permissao> { }

@@ -1,6 +1,13 @@
-﻿namespace ReservaFacil.Domain.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using ReservaFacil.Domain.Models.Shared;
 
-public class UsuarioPermissao
+namespace ReservaFacil.Domain.Models;
+
+[Table("UsuarioPermissao")]
+public class UsuarioPermissao : Base
 {
+    public int IdUsuario {get; set;}
     
+    public int IdPermissao {get; set;}
 }

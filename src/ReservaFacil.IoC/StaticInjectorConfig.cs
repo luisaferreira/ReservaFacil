@@ -9,6 +9,8 @@ namespace ReservaFacil.IoC
         public static void RegisterStaticDependencies(this IServiceCollection services)
         {
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IPerfilRepository, PerfilRepository>();
+            services.AddScoped<IPermissaoRepository, PermissaoRepository>();
         }
     }
 }

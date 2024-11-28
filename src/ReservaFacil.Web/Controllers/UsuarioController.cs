@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ReservaFacil.Web.DTOs;
+using ReservaFacil.Application.DTOs;
 using ReservaFacil.Web.Services;
 
 namespace ReservaFacil.Web.Controllers
@@ -18,19 +18,30 @@ namespace ReservaFacil.Web.Controllers
             return View();
         }
 
-        public IActionResult Cadastro()
+        public async Task<IActionResult> Cadastro()
         {
+            var perfilComPermissoes = await _apiService.GetDataAsync<List<PerfilComPermissoesDTO>>("perfil/perfil-com-permissoes");
+            
+            var permissoes = perfilComPermissoes
+                .SelectMany(p => p.Permissoes)  
+                .Where(p => p != null && p.IdPermissao > 0)
+                .DistinctBy(p => p.IdPermissao)                    
+                .ToList();
+            
+            ViewBag.PerfilComPermissoes = perfilComPermissoes;
+            ViewBag.Permissoes = permissoes;
+
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Cadastro(Usuario usuario)
+        public async Task<IActionResult> Cadastro(UsuarioDTO usuario)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var success = await _apiService.PostDataAsync("https://localhost:44390/Usuario", usuario);
+                    var success = await _apiService.PostDataAsync("usuario", usuario);
 
                     return Json(success ? new { success = true, message = "Usuário adicionado com sucesso!" } : new { success = false, message = "Erro ao adicionar o usuário. Tente novamente mais tarde." });
                 }

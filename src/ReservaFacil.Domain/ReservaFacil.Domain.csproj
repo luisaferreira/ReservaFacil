@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ReservaFacil.Application\ReservaFacil.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Interfaces\Repositories\IUsuarioPermissaoRepository.cs" />
+  </ItemGroup>
+
 </Project>

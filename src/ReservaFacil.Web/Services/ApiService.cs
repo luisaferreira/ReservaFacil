@@ -6,14 +6,14 @@ namespace ReservaFacil.Web.Services;
 public class ApiService : IApiService
 {
     private readonly HttpClient _httpClient;
-    
+    private const string BaseUrl = "https://localhost:44390";
+
     public ApiService(HttpClient httpClient)
         => _httpClient = httpClient;
     
-    
-    public async Task<T> GetDataAsync<T>(string url)
+    public async Task<T> GetDataAsync<T>(string endpoint)
     {
-        var response = await _httpClient.GetAsync(url);
+        var response = await _httpClient.GetAsync($"{BaseUrl}/{endpoint}");
         
         if (!response.IsSuccessStatusCode) return default;
         
@@ -22,11 +22,11 @@ public class ApiService : IApiService
         return JsonConvert.DeserializeObject<T>(jsonResponse);
     }
 
-    public async Task<bool> PostDataAsync(string url, object data)
+    public async Task<bool> PostDataAsync(string endpoint, object data)
     {
         var jsonContent = JsonConvert.SerializeObject(data);
         var content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
-        var response = await _httpClient.PostAsync(url, content);
+        var response = await _httpClient.PostAsync($"{BaseUrl}/{endpoint}", content);
         
         return response.IsSuccessStatusCode;
     }
