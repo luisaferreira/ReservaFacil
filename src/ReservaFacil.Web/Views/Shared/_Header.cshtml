@@ -1,0 +1,13 @@
+﻿@model dynamic
+
+<div class="header-container">
+    @if (!Model.PaginaInicial)
+    {
+        <div class="arrow" onclick="voltar()">
+            <div class="arrow-top"></div>
+            <div class="arrow-bottom"></div>
+        </div>
+    }
+
+    <h1 class="titulo-pagina">@Model.Titulo</h1>
+</div>

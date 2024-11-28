@@ -1,0 +1,38 @@
+﻿<nav class="background-light menu">
+    <a class="d-block text-center">
+        <i class="fa-solid fa-truck-fast text-color-primary menu-logo"></i>
+    </a>
+
+    <ul class="nav flex-column text-center">
+        <li class="menu-item menu-item-active">
+            <a href="/Home" class="menu-item-link nav-item w-100 text-decoration-none">
+                <img class="menu-item-icon" id="home-icon" src="~/icons/navigation/home_outline.svg"/>
+                <span class="menu-item-descricao">Reserva de Salas</span>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="/Sala" class="menu-item-link nav-item w-100 text-decoration-none">
+                <img class="menu-item-icon" id="room-icon" src="~/icons/navigation/room_outline.svg" />
+                <span class="menu-item-descricao">Salas</span>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="/Usuario" class="menu-item-link nav-item w-100 text-decoration-none">
+                <img class="menu-item-icon" id="user-icon" src="~/icons/navigation/user_outline.svg"/>
+                <span class="menu-item-descricao">Usuários</span>
+            </a>
+        </li>
+        <li class="menu-item" onclick="selecionarPagina('notification')">
+            <a href="/Notificacoes" class="menu-item-link nav-item w-100 text-decoration-none">
+                <img class="menu-item-icon" id="notification-icon" src="~/icons/navigation/notification_outline.svg" />
+                <span class="menu-item-descricao">Notificações</span>
+            </a>
+        </li>
+        <li class="menu-item" onclick="selecionarPagina('settings')">
+            <a href="/Configuracoes" class="menu-item-link nav-item w-100 text-decoration-none">
+                <img class="menu-item-icon" id="settings-icon" src="~/icons/navigation/settings_outline.svg" />
+                <span class="menu-item-descricao">Configurações</span>
+            </a>
+        </li>
+    </ul>
+</nav>
