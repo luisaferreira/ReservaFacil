@@ -62,7 +62,7 @@ body {
     overflow: hidden;
     border-radius: 0 5px 5px 0;
     box-shadow: 0 4px 4px rgba(0,0,0, 0.25);
-    transition: min-width 0.3s ease;
+    transition: min-width 1s ease;
 }
 
 .menu:hover {
@@ -78,12 +78,14 @@ body {
     padding: .5rem 0;
     margin: 1rem 0;
     cursor: pointer;
+    overflow: hidden;
+    transition: background-color 1s ease, transform 1s ease;
+}
+
+.menu:hover .menu-item-link {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 0.5rem;
-    overflow: hidden;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 0 1rem;
 }
 
 .menu-item-icon {
@@ -91,30 +93,26 @@ body {
     transition: transform 0.3s ease;
 }
 
-    .menu-item-icon:hover {
-        transform: scale(1.05);
-    }
+.menu-item:hover .menu-item-icon {
+    transform: scale(1.05);
+}
 
 .menu-item-descricao {
     display: none;
-    white-space: nowrap; /* Evita quebra de linha no texto */
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    transform: translateX(-10px); /* Move o texto para a esquerda inicialmente */
-    color: #333;
+    white-space: nowrap;
+    transition: display 1s ease, transform 1s ease;
+    transform: translateX(-10px);
     font-size: 1rem;
+    font-family: "Inter", sans-serif;
+    color: var(--primary-color);
 }
 
 .menu:hover .menu-item-descricao {
     display: inline;
-    transform: translateX(0); /* Move a descrição para sua posição normal */
+    transform: translateX(0);
+    margin-left: .75rem;
 }
 
-/* Efeito ao passar o mouse nos ícones */
-.menu-item-icon:hover {
-    transform: scale(1.2);
-}
-
-/* Estilo ao passar o mouse no item */
-.menu-item:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+.menu-item:hover .menu-item-descricao {
+   font-weight: bold;
 }
