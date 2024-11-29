@@ -11,13 +11,8 @@
 <link rel="stylesheet" href="~/css/site.css">
 
 <script>
-    var perfilComPermissoes = @Html.Raw(Json.Serialize(perfilComPermissoes));
+    const perfilComPermissoes = @Html.Raw(Json.Serialize(perfilComPermissoes));
 </script>
-
-@section Scripts {
-    <script src="~/js/views/usuario.js"></script>
-}
-
 
 @await Html.PartialAsync("_Header", new { Titulo = "Adicionar Usuário", PaginaInicial = false })
 
@@ -78,3 +73,6 @@
     </form>
 </div>
 
+@section Scripts {
+    <script src="~/js/Usuario/cadastro.js"></script>
+}
