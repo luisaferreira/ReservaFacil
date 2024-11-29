@@ -51,7 +51,7 @@
                 <label class="form-label">Permissões:</label>
                 @foreach (var permissao in permissoes!)
                 {
-                    <div class="form-check">
+                    <div class="form-check" data-bs-toggle="tooltip" data-bs-placement="right" title="@permissao.Descricao">
                         <input class="form-check-input"
                                type="checkbox"
                                id="permissao_@permissao.IdPermissao"
