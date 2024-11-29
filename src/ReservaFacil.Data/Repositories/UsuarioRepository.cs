@@ -9,13 +9,10 @@ using ReservaFacil.Domain.Models;
 
 namespace ReservaFacil.Data.Repositories
 {
-    public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
+    public class UsuarioRepository(IConfiguration configuration)
+        : BaseRepository<Usuario>(configuration), IUsuarioRepository
     {
-        private readonly IConfiguration _configuration;
-
-        public UsuarioRepository(IConfiguration configuration)
-            : base(configuration)
-                => _configuration = configuration;
+        private readonly IConfiguration _configuration = configuration;
 
         public async Task<int> InserirUsuarioComPermissoes(UsuarioDTO usuarioDTO)
         {
@@ -35,7 +32,7 @@ namespace ReservaFacil.Data.Repositories
                     PerfilId = usuarioDTO.PerfilId ?? 0
                 };
 
-                var usuarioId = (int)(decimal) await connection.InsertAsync(usuario, transaction);
+                var usuarioId = Convert.ToInt32(await connection.InsertAsync(usuario, transaction));
 
                 var permissoes = usuarioDTO.PermissaoIds.Select(id => new UsuarioPermissao
                 {
@@ -60,7 +57,7 @@ namespace ReservaFacil.Data.Repositories
 
                 return usuarioId;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 transaction.Rollback();
                 throw;
