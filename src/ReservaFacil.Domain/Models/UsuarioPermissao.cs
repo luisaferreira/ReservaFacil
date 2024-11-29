@@ -5,7 +5,7 @@ using ReservaFacil.Domain.Models.Shared;
 namespace ReservaFacil.Domain.Models;
 
 [Table("UsuarioPermissao")]
-public class UsuarioPermissao : Base
+public class UsuarioPermissao
 {
     public int IdUsuario {get; set;}
     

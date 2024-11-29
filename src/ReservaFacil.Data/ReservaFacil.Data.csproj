@@ -18,8 +18,4 @@
     <ProjectReference Include="..\ReservaFacil.Domain\ReservaFacil.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Repositories\UsuarioPermissaoRepository.cs" />
-  </ItemGroup>
-
 </Project>

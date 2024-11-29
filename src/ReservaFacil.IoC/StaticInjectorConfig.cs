@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ReservaFacil.Data.Repositories;
 using ReservaFacil.Domain.Interfaces.Repositories;
+using ReservaFacil.Domain.Interfaces.Services;
+using ReservaFacil.Domain.Services;
 
 namespace ReservaFacil.IoC
 {
@@ -11,6 +13,9 @@ namespace ReservaFacil.IoC
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IPerfilRepository, PerfilRepository>();
             services.AddScoped<IPermissaoRepository, PermissaoRepository>();
+            services.AddScoped<IUsuarioPermissaoRepository, UsuarioPermissaoRepository>();
+
+            services.AddScoped<IUsuarioService, UsuarioService>();
         }
     }
 }
