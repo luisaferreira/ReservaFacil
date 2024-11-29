@@ -8,13 +8,18 @@
     var permissoes = ViewBag.Permissoes as List<PermissaoDTO>;
 }
 
+<link rel="stylesheet" href="~/css/site.css">
+
 <script>
     var perfilComPermissoes = @Html.Raw(Json.Serialize(perfilComPermissoes));
 </script>
 
-<link rel="stylesheet" href="~/css/formsHeader.css">
+@section Scripts {
+    <script src="~/js/views/usuario.js"></script>
+}
 
-@await Html.PartialAsync("_FormsHeader", "Adicionar Usuário")
+
+@await Html.PartialAsync("_Header", new { Titulo = "Adicionar Usuário", PaginaInicial = false })
 
 <div class="container mt-4">
     <form method="post" id="userForm" novalidate>
@@ -68,9 +73,8 @@
         <hr />
 
         <div class="mt-4 d-flex justify-content-end">
-            <button type="submit" class="btn btn-custom">Adicionar</button>
+            <button type="submit" class="btn btn-primary">Adicionar</button>
         </div>
     </form>
 </div>
 
-<script src="~/js/Usuario/cadastro.js"></script>

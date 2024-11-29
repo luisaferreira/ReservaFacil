@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="~/lib/jquery/dist/jquery.slim.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
@@ -19,19 +19,36 @@
 </head>
 <body>
 
-    <div class="content-container">
-        <!-- Menu lateral -->
-        @await Html.PartialAsync("_MenuLateral")
-
-        <!-- Conteúdo principal -->
-        <div class="main-content">
-            @RenderBody()
+<!-- Modal de Erro -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalLabel">Erro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalErrorMessages">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+            </div>
         </div>
     </div>
+</div>
 
-    <script src="https://kit.fontawesome.com/bacfdab141.js" crossorigin="anonymous"></script>
-    <script src="~/js/site.js"></script>
+<div class="content-container">
+    <!-- Menu lateral -->
+    @await Html.PartialAsync("_MenuLateral")
 
-    @RenderSection("Scripts", required: false)
+    <!-- Conteúdo principal -->
+    <div class="main-content">
+        @RenderBody()
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/bacfdab141.js" crossorigin="anonymous"></script>
+<script src="~/js/site.js"></script>
+
+@RenderSection("Scripts", required: false)
 </body>
 </html>

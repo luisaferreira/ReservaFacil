@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using ReservaFacil.Application.DTOs;
 using ReservaFacil.Web.Services;
 
@@ -20,18 +21,27 @@ namespace ReservaFacil.Web.Controllers
 
         public async Task<IActionResult> Cadastro()
         {
-            var perfilComPermissoes = await _apiService.GetDataAsync<List<PerfilComPermissoesDTO>>("perfil/perfil-com-permissoes");
+            try
+            {
+                var perfilComPermissoes = await _apiService.GetDataAsync<List<PerfilComPermissoesDTO>>("perfil/perfil-com-permissoes");
             
-            var permissoes = perfilComPermissoes
-                .SelectMany(p => p.Permissoes)  
-                .Where(p => p != null && p.IdPermissao > 0)
-                .DistinctBy(p => p.IdPermissao)                    
-                .ToList();
+                var permissoes = perfilComPermissoes
+                    .SelectMany(p => p.Permissoes)  
+                    .Where(p => p != null && p.IdPermissao > 0)
+                    .DistinctBy(p => p.IdPermissao)                    
+                    .ToList();
             
-            ViewBag.PerfilComPermissoes = perfilComPermissoes;
-            ViewBag.Permissoes = permissoes;
+                ViewBag.PerfilComPermissoes = perfilComPermissoes;
+                ViewBag.Permissoes = permissoes;
 
-            return View();
+                return View();
+            }
+            catch (Exception)
+            {
+                ViewBag.PerfilComPermissoes = new List<PerfilComPermissoesDTO>();
+                ViewBag.Permissoes = new List<PermissaoDTO>();
+                return View();
+            }
         }
 
         [HttpPost]
