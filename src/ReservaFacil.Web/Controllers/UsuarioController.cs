@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using ReservaFacil.Application.DTOs;
 using ReservaFacil.Web.Services;
 
@@ -9,9 +8,9 @@ namespace ReservaFacil.Web.Controllers
     {
         private readonly ApiService _apiService;
 
-        public UsuarioController(ApiService apiService)
+        public UsuarioController(IConfiguration configuration)
         {
-            _apiService = apiService;
+            _apiService = new ApiService(configuration);
         }
 
         public IActionResult Index()

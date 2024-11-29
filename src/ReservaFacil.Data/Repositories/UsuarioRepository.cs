@@ -36,8 +36,8 @@ namespace ReservaFacil.Data.Repositories
 
                 var permissoes = usuarioDTO.PermissaoIds.Select(id => new UsuarioPermissao
                 {
-                    IdUsuario = usuarioId,
-                    IdPermissao = id
+                    UsuarioId = usuarioId,
+                    PermissaoId = id
                 }).ToList();
 
                 foreach (var permissao in permissoes)
@@ -48,7 +48,7 @@ namespace ReservaFacil.Data.Repositories
                                                     INSERT INTO [UsuarioPermissao] ([IdUsuario], [IdPermissao])
                                                     VALUES (@IdUsuario, @IdPermissao);
                                        """;
-                    var parameters = new { IdUsuario = usuarioId, permissao.IdPermissao };
+                    var parameters = new { IdUsuario = usuarioId, permissao.PermissaoId };
 
                     await connection.ExecuteAsync(sql, parameters, transaction: transaction);
                 }

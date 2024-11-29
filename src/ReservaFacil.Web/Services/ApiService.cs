@@ -1,19 +1,23 @@
-﻿using ReservaFacil. Domain. Interfaces;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace ReservaFacil.Web.Services;
 
-public class ApiService : IApiService
+public class ApiService
 {
     private readonly HttpClient _httpClient;
-    private const string BaseUrl = "https://localhost:44390";
 
-    public ApiService(HttpClient httpClient)
-        => _httpClient = httpClient;
+    public ApiService(IConfiguration configuration)
+    {
+        _httpClient = new HttpClient
+        {
+            BaseAddress = new Uri(configuration.GetSection("ReservaFacilAPI:Address").Value)
+        };
+    }
+
     
     public async Task<T> GetDataAsync<T>(string endpoint)
     {
-        var response = await _httpClient.GetAsync($"{BaseUrl}/{endpoint}");
+        var response = await _httpClient.GetAsync(endpoint);
         
         if (!response.IsSuccessStatusCode) return default;
         
@@ -26,7 +30,7 @@ public class ApiService : IApiService
     {
         var jsonContent = JsonConvert.SerializeObject(data);
         var content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
-        var response = await _httpClient.PostAsync($"{BaseUrl}/{endpoint}", content);
+        var response = await _httpClient.PostAsync(endpoint, content);
         
         return response.IsSuccessStatusCode;
     }

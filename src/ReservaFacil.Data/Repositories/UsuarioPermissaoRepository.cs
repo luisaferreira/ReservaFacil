@@ -17,7 +17,7 @@ namespace ReservaFacil.Data.Repositories
         {
             var sql = new StringBuilder();
             sql.AppendLine("INSERT INTO UsuarioPermissao (IdUsuario, IdPermissao)");
-            sql.AppendLine("VALUES(@IdUsuario, @IdPermissao)");
+            sql.AppendLine("VALUES(@UsuarioId, @PermissaoId)");
             sql.AppendLine("SELECT CAST(SCOPE_IDENTITY() as int)");
 
             using var connection = new SqlConnection(_context.ConnectionString);
