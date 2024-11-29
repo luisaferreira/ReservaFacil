@@ -6,5 +6,5 @@ namespace ReservaFacil.Domain.Interfaces.Repositories;
 
 public interface IPerfilRepository : IBaseRepository<Perfil>
 {
-    Task<IEnumerable<PerfilComPermissoesDTO>> GetPerfilComPermissoesAsync();
+    Task<List<(Perfil perfil, IEnumerable<Permissao> permissoes)>> GetPerfilComPermissoesAsync();
 }

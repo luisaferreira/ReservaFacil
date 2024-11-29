@@ -4,8 +4,5 @@ using ReservaFacil.Domain.Models;
 
 namespace ReservaFacil.Domain.Interfaces.Repositories
 {
-    public interface IUsuarioRepository : IBaseRepository<Usuario>
-    {
-        Task<int> InserirUsuarioComPermissoes(UsuarioDTO usuario);
-    }
+    public interface IUsuarioRepository : IBaseRepository<Usuario> { }
 }

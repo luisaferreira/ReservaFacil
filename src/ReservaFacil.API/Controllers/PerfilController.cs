@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ReservaFacil.Application.DTOs;
 using ReservaFacil.Domain.Interfaces.Repositories;
 
 namespace ReservaFacil.API.Controllers;
@@ -28,9 +29,31 @@ public class PerfilController : Controller
     {
         var perfisComPermissoes  = await _perfilRepository.GetPerfilComPermissoesAsync();
         
-        if(!perfisComPermissoes .Any())
+        if(perfisComPermissoes.Count == 0)
             return NoContent();
         
-        return Ok(perfisComPermissoes);
+        var perfilComPermissoesDTO = perfisComPermissoes.Select(tuple =>
+        {
+            var perfilDTO = new PerfilDTO
+            {
+                Id = tuple.perfil.Id,
+                Nome = tuple.perfil.Nome,
+            };
+            var permissoesDTO = tuple.permissoes.Select(p => new PermissaoDTO
+            {
+                IdPermissao = p.Id,
+                PermissaoNome = p.Nome,
+                Descricao = p.Descricao
+            }).ToList();
+
+            return new PerfilComPermissoesDTO
+            {
+                IdPerfil = perfilDTO.Id,
+                PerfilNome = perfilDTO.Nome,
+                Permissoes = permissoesDTO
+            };
+        }).ToList();
+        
+        return Ok(perfilComPermissoesDTO);
     }
 }

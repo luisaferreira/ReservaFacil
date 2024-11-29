@@ -16,48 +16,8 @@ public class PerfilRepository : BaseRepository<Perfil>, IPerfilRepository
     public PerfilRepository(IConfiguration configuration)
         : base(configuration)
             => _configuration = configuration;
-
-    // public async Task<IEnumerable<PerfilComPermissoesDTO>> GetPerfilComPermissoesAsync()
-    // {
-    //     var connection = new SqlConnection(_configuration.GetConnectionString("ReservaFacil")); 
-    //     
-    //     const string sql = """
-    //                                    SELECT 
-    //                                        p.ID as IdPerfil, 
-    //                                        p.Nome as PerfilNome,
-    //                                        perm.ID as IdPermissao,
-    //                                        perm.Nome as PermissaoNome, 
-    //                                        perm.Descricao as Descricao 
-    //                                    FROM Perfil p 
-    //                                    LEFT JOIN PerfilPermissao pp on p.Id = pp.IdPerfil
-    //                                    LEFT JOIN Permissao perm on perm.Id = pp.IdPermissao
-    //                        """;
-    //     
-    //     var perfilDictionary = new Dictionary<int, PerfilComPermissoesDTO>();
-    //
-    //     await connection.QueryAsync<PerfilComPermissoesDTO, PermissaoDTO, PerfilComPermissoesDTO>(
-    //         sql,
-    //         (perfil, permissao) =>
-    //         {
-    //             if (!perfilDictionary.TryGetValue(perfil.IdPerfil, out var perfilExistente))
-    //             {
-    //                 perfilExistente = perfil;
-    //                 perfilExistente.Permissoes ??= []; 
-    //                 perfilDictionary[perfil.IdPerfil] = perfilExistente;
-    //             }
-    //             
-    //             perfilExistente.Permissoes.Add(permissao);
-    //             
-    //             return perfilExistente;
-    //         },
-    //         splitOn: "IdPermissao");
-    //
-    //     var perfisAgrupados = perfilDictionary.Values.ToList();
-    //
-    //     return perfisAgrupados;
-    // }
-    
-    public async Task<IEnumerable<PerfilComPermissoesDTO>> GetPerfilComPermissoesAsync()
+   
+    public async Task<List<(Perfil perfil, IEnumerable<Permissao> permissoes)>> GetPerfilComPermissoesAsync()
     {
         var connection = new SqlConnection(_configuration.GetConnectionString("ReservaFacil")); 
 
@@ -96,10 +56,24 @@ public class PerfilRepository : BaseRepository<Perfil>, IPerfilRepository
         );
 
         var perfisAgrupados = perfilDictionary.Values.ToList();
+        
+        var resultado = perfisAgrupados.Select(p => (
+            new Perfil
+            {
+                Id = p.IdPerfil,
+                Nome = p.PerfilNome,
+            },
+            (IEnumerable<Permissao>)p.Permissoes.Select(permissao => new Permissao
+            {
+                Id = permissao.IdPermissao,
+                Nome = permissao.PermissaoNome,
+                Descricao = permissao.Descricao
+            })
+        )).ToList();
 
         await connection.CloseAsync();
 
-        return perfisAgrupados;
+        return resultado;
     }
 
 }
