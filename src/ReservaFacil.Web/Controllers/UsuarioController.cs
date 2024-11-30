@@ -15,7 +15,12 @@ namespace ReservaFacil.Web.Controllers
             _apiService = new ApiService(configuration);
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> ListarUsuarios(int numeroPagina)
         {
             var usuarios = await _apiService.GetDataAsync<IEnumerable<Usuario>>("usuario");
             var perfis = await _apiService.GetDataAsync<IEnumerable<Perfil>>("perfil");
@@ -23,10 +28,14 @@ namespace ReservaFacil.Web.Controllers
             var viewModel = new UsuarioViewModel
             {
                 Perfis = perfis,
-                Usuarios = usuarios
+                Usuarios = usuarios,
+                PaginaAtiva = numeroPagina,
+                QuantidadeUsuarios = usuarios.Count()
             };
 
-            return View(viewModel);
+            viewModel.QuantidadePaginas = (int)Math.Ceiling(viewModel.QuantidadeUsuarios / (double)15);
+
+            return PartialView("_Usuarios", viewModel);
         }
 
         public async Task<IActionResult> Cadastro()

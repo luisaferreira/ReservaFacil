@@ -1,0 +1,103 @@
+﻿@model ReservaFacil.Application.ViewModels.UsuarioViewModel;
+
+@{
+    Layout = null;
+}
+
+@if (Model != null && Model.Usuarios.Any())
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="w-40">Nome</th>
+                    <th scope="col" class="w-20 text-center">Matrícula</th>
+                    <th scope="col" class="w-20 text-center">Perfil</th>
+                    <th scope="col" class="w-10 text-center">Ativo?</th>
+                    <th scope="col" class="w-10 text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var usuario in Model.Usuarios)
+                {
+                    var ativo = usuario.Ativo ? "Sim" : "Não";
+
+                    <tr>
+                        <td>@usuario.Nome</td>
+                        <td class="text-center">@usuario.Matricula</td>
+                        <td class="text-center">@Model.Perfis.FirstOrDefault(x => x.Id == usuario.PerfilId).Nome</td>
+                        <td class="text-center">@ativo</td>
+                        <td class="text-center">
+                            <a class="cursor-pointer" onclick="editarUsuario(@usuario.Id)">
+                                <i class="fa-solid fa-user-pen text-color-primary"></i>
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+        </table>
+    </div>
+
+    <nav class="d-flex justify-content-center">
+        <ul class="pagination mt-2 mb-4">
+            @{
+                int qtdBotoesVisiveis = 5;
+                int primeiraPagina = Math.Max(1, Model.PaginaAtiva - (qtdBotoesVisiveis / 2));
+                int ultimaPagina = Math.Min(Model.QuantidadePaginas, primeiraPagina + qtdBotoesVisiveis - 1);
+
+                if (Model.PaginaAtiva <= (qtdBotoesVisiveis / 2))
+                {
+                    ultimaPagina = Math.Min(Model.QuantidadePaginas, qtdBotoesVisiveis);
+                }
+
+                if (Model.PaginaAtiva + (qtdBotoesVisiveis / 2) >= Model.QuantidadePaginas)
+                {
+                    primeiraPagina = Math.Max(1, Model.QuantidadePaginas - qtdBotoesVisiveis + 1);
+                }
+            }
+
+            <li class="pagination-item text-center">
+                <a>&laquo;</a>
+            </li>
+
+            @if (primeiraPagina > 1)
+            {
+                <li class="pagination-item pagination-item-disabled text-center">
+                    <span>...</span>
+                </li>
+            }
+
+            @for (int i = primeiraPagina; i <= ultimaPagina; i++)
+            {
+                var active = i == Model.PaginaAtiva ? "pagination-item-active" : "";
+                <li class="pagination-item text-center @active">
+                    <a class="page-link" onclick="alterarPagina(@i, @Model.QuantidadePaginas)">@i</a>
+                </li>
+            }
+
+            @if (ultimaPagina < Model.QuantidadePaginas)
+            {
+                <li class="pagination-item pagination-item-disabled text-center">
+                    <span>...</span>
+                </li>
+            }
+            <li class="pagination-item text-center">
+                <a onclick="alterarPagina(@(Model.PaginaAtiva + 1), @Model.QuantidadePaginas)">»</a>
+            </li>
+
+
+@*             <li class="pagination-item pagination-item-active text-center"><a>1</a></li>
+            <li class="pagination-item text-center"><a>2</a></li>
+            <li class="pagination-item text-center"><a>3</a></li>
+            <li class="pagination-item text-center"><a>4</a></li>
+            <li class="pagination-item text-center"><a>5</a></li> *@
+            <li class="pagination-item text-center"><a>&raquo;</a></li>
+        </ul>
+    </nav>
+}
+else
+{
+    <p>Não há registros!!</p>
+}
