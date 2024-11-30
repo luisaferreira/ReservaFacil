@@ -1,8 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using ReservaFacil.Data.Repositories;
-using ReservaFacil.Domain.Interfaces.Repositories;
 using ReservaFacil.IoC;
 using TokenHandler = ReservaFacil.API.Security.TokenHandler;
 

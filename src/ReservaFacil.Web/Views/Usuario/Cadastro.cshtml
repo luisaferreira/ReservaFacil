@@ -1,16 +1,23 @@
-﻿@{
+﻿@using ReservaFacil.Application.DTOs
+@model ReservaFacil.Application.DTOs.UsuarioDTO;
+
+@{
     Layout = "_Layout";
     ViewData["Title"] = "Adicionar Usuário";
+    var perfilComPermissoes = ViewBag.PerfilComPermissoes as List<PerfilComPermissoesDTO>;
+    var permissoes = ViewBag.Permissoes as List<PermissaoDTO>;
 }
+
+<link rel="stylesheet" href="~/css/site.css">
+
+<script>
+    const perfilComPermissoes = @Html.Raw(Json.Serialize(perfilComPermissoes));
+</script>
 
 @await Html.PartialAsync("_Header", new { Titulo = "Adicionar Usuário", PaginaInicial = false })
 
-@section Scripts {
-    <script src="~/js/views/usuario.js"></script>
-}
-
 <div class="container mt-4">
-    <form method="post">
+    <form method="post" id="userForm" novalidate>
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="Nome" class="form-label">Nome:</label>
@@ -25,43 +32,39 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="Email" class="form-label">E-mail:</label>
-                <input type="email" class="form-control" id="Email" name="Email" placeholder="Digite o e-mail"/>
+                <input type="text" class="form-control" id="Email" name="Email" placeholder="Digite o e-mail"/>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="Perfil" class="form-label">Perfil:</label>
                 <select class="form-select" aria-label="perfil" id="Perfil" name="PerfilId">
                     <option value="">Escolha um perfil</option>
-                    <option value="1">Administrador</option>
-                    <option value="2">Professor</option>
-                    <option value="3">Visitante</option>
+                    @foreach (var perfil in perfilComPermissoes!)
+                    {
+                        <option value="@perfil.IdPerfil">@perfil.PerfilNome</option>
+                    }
                 </select>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-12">
-                <label for="Permissoes" class="form-label">Permissões:</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="GerenciarUsuarios" name="PermissaoIds" value="1"/>
-                    <label class="form-check-label" for="GerenciarUsuarios">
-                        Gerenciar Usuários
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="GerenciarReservas" name="PermissaoIds" value="2"/>
-                    <label class="form-check-label" for="GerenciarReservas">
-                        Gerenciar Reservas
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="GerenciarSalas" name="PermissaoIds" value="3"/>
-                    <label class="form-check-label" for="GerenciarSalas">
-                        Desbloquear Porta
-                    </label>
-                </div>
+            <div class="col-md-12 mb-3">
+                <label class="form-label">Permissões:</label>
+                @foreach (var permissao in permissoes!)
+                {
+                    <div class="form-check" data-bs-toggle="tooltip" data-bs-placement="right" title="@permissao.Descricao">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               id="permissao_@permissao.IdPermissao"
+                               name="PermissaoIds"
+                               value="@permissao.IdPermissao" />
+                        <label class="form-check-label" for="permissao_@permissao.IdPermissao">
+                            @permissao.PermissaoNome
+                        </label>
+                    </div>
+                }
             </div>
         </div>
-
+        
         <hr />
 
         <div class="mt-4 d-flex justify-content-end">
@@ -69,3 +72,7 @@
         </div>
     </form>
 </div>
+
+@section Scripts {
+    <script src="~/js/Usuario/cadastro.js"></script>
+}

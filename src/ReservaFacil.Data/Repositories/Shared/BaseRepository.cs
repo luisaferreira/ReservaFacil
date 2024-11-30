@@ -2,7 +2,6 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using ReservaFacil.Domain.Interfaces.Repositories.Shared;
-using ReservaFacil.Domain.Models.Shared;
 
 namespace ReservaFacil.Data.Repositories.Shared
 {
@@ -14,6 +13,10 @@ namespace ReservaFacil.Data.Repositories.Shared
         {
             _context = new Context(configuration);
         }
+        
+        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+        public void Dispose()
+            => GC.SuppressFinalize(this);
 
         public virtual void Atualizar(TEntity t)
         {
@@ -25,11 +28,6 @@ namespace ReservaFacil.Data.Repositories.Shared
         {
             var connection = new SqlConnection(_context.ConnectionString);
             await connection.UpdateAsync(t);
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
         }
 
         public virtual bool Excluir(TEntity t)

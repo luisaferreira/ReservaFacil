@@ -6,4 +6,33 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ReservaFacil.Application\ReservaFacil.Application.csproj" />
+      <ProjectReference Include="..\ReservaFacil.Domain\ReservaFacil.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Interfaces\**" />
+      <Compile Remove="DTOs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Interfaces\**" />
+      <EmbeddedResource Remove="DTOs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Interfaces\**" />
+      <Content Remove="DTOs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Interfaces\**" />
+      <None Remove="DTOs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    </ItemGroup>
+
 </Project>

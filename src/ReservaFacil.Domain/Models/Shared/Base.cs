@@ -6,5 +6,6 @@ namespace ReservaFacil.Domain.Models.Shared
     {
         [Key]
         public int Id { get; set; }
+        public DateTime CriadoEm { get; protected set; }
     }
 }
