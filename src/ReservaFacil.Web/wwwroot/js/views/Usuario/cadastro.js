@@ -1,4 +1,6 @@
-﻿$(document).ready(function() {
+﻿$(document).ready(function () {
+    selecionarPagina('user');
+
     $("form").submit(function(e) {
         e.preventDefault();
 

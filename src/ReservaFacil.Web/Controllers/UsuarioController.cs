@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ReservaFacil.Application.DTOs;
+using ReservaFacil.Application.ViewModels;
+using ReservaFacil.Domain.Models;
 using ReservaFacil.Web.Services;
 
 namespace ReservaFacil.Web.Controllers
@@ -13,9 +15,18 @@ namespace ReservaFacil.Web.Controllers
             _apiService = new ApiService(configuration);
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var usuarios = await _apiService.GetDataAsync<IEnumerable<Usuario>>("usuario");
+            var perfis = await _apiService.GetDataAsync<IEnumerable<Perfil>>("perfil");
+
+            var viewModel = new UsuarioViewModel
+            {
+                Perfis = perfis,
+                Usuarios = usuarios
+            };
+
+            return View(viewModel);
         }
 
         public async Task<IActionResult> Cadastro()
