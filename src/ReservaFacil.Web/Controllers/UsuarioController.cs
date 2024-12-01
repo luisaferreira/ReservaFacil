@@ -28,7 +28,7 @@ namespace ReservaFacil.Web.Controllers
             var viewModel = new UsuarioViewModel
             {
                 Perfis = perfis,
-                Usuarios = usuarios,
+                Usuarios = usuarios.Skip((numeroPagina - 1) * 15).Take(15).ToList(),
                 PaginaAtiva = numeroPagina,
                 QuantidadeUsuarios = usuarios.Count()
             };

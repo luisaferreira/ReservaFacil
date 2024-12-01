@@ -58,8 +58,12 @@
                 }
             }
 
-            <li class="pagination-item text-center">
-                <a>&laquo;</a>
+            @{
+                var voltarAtivo = Model.PaginaAtiva == 1 ? "pagination-item-disabled" : "";
+            }
+
+            <li class="pagination-item text-center @voltarAtivo">
+                <a onclick="alterarPagina(@(Model.PaginaAtiva - 1), @Model.QuantidadePaginas)">&laquo;</a>
             </li>
 
             @if (primeiraPagina > 1)
@@ -73,7 +77,7 @@
             {
                 var active = i == Model.PaginaAtiva ? "pagination-item-active" : "";
                 <li class="pagination-item text-center @active">
-                    <a class="page-link" onclick="alterarPagina(@i, @Model.QuantidadePaginas)">@i</a>
+                    <a onclick="alterarPagina(@i, @Model.QuantidadePaginas)">@i</a>
                 </li>
             }
 
@@ -83,17 +87,14 @@
                     <span>...</span>
                 </li>
             }
-            <li class="pagination-item text-center">
+
+            @{
+                var avancarAtivo = Model.PaginaAtiva == Model.QuantidadePaginas ? "pagination-item-disabled" : "";
+            }
+
+            <li class="pagination-item text-center @avancarAtivo">
                 <a onclick="alterarPagina(@(Model.PaginaAtiva + 1), @Model.QuantidadePaginas)">»</a>
             </li>
-
-
-@*             <li class="pagination-item pagination-item-active text-center"><a>1</a></li>
-            <li class="pagination-item text-center"><a>2</a></li>
-            <li class="pagination-item text-center"><a>3</a></li>
-            <li class="pagination-item text-center"><a>4</a></li>
-            <li class="pagination-item text-center"><a>5</a></li> *@
-            <li class="pagination-item text-center"><a>&raquo;</a></li>
         </ul>
     </nav>
 }
