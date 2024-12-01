@@ -19,3 +19,11 @@ function selecionarPagina(pagina) {
     var itemSelecionado = imgSelecionado.closest(".menu-item");
     itemSelecionado.addClass("menu-item-active");
 }
+
+function mostrarCarregamento() {
+    $("#loading").css("display", "flex");
+}
+
+function ocultarCarregamento() {
+    $("#loading").css("display", "none");
+}

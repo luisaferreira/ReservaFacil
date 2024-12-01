@@ -5,6 +5,7 @@
 });
 
 function listarUsuarios() {
+    mostrarCarregamento();
     var pagina = $("#numeroPagina").val();
 
     $.ajax({
@@ -12,6 +13,9 @@ function listarUsuarios() {
         url: "/Usuario/ListarUsuarios?numeroPagina=" + pagina,
         success: function (data) {
             $("#divListaUsuarios").html(data);
+        },
+        complete: function () {
+            ocultarCarregamento();
         }
     });
 }
