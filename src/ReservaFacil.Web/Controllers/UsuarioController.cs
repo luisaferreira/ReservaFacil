@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ReservaFacil.Application.DTOs;
+using ReservaFacil.Application.ViewModels;
+using ReservaFacil.Domain.Models;
 using ReservaFacil.Web.Services;
 
 namespace ReservaFacil.Web.Controllers
@@ -16,6 +18,24 @@ namespace ReservaFacil.Web.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public async Task<IActionResult> ListarUsuarios(int numeroPagina)
+        {
+            var usuarios = await _apiService.GetDataAsync<IEnumerable<Usuario>>("usuario");
+            var perfis = await _apiService.GetDataAsync<IEnumerable<Perfil>>("perfil");
+
+            var viewModel = new UsuarioViewModel
+            {
+                Perfis = perfis,
+                Usuarios = usuarios.Skip((numeroPagina - 1) * 15).Take(15).ToList(),
+                PaginaAtiva = numeroPagina,
+                QuantidadeUsuarios = usuarios.Count()
+            };
+
+            viewModel.QuantidadePaginas = (int)Math.Ceiling(viewModel.QuantidadeUsuarios / (double)15);
+
+            return PartialView("_Usuarios", viewModel);
         }
 
         public async Task<IActionResult> Cadastro()

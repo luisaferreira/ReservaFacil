@@ -5,7 +5,7 @@
 @await Html.PartialAsync("_Header", new { Titulo = "Usuários", PaginaInicial = true })
 
 @section Scripts {
-    <script src="~/js/views/usuario.js"></script>
+    <script src="~/js/views/Usuario/index.js"></script>
 }
 
 <div class="container mt-4">
@@ -13,137 +13,8 @@
         <a class="btn btn-primary" href="Usuario/Cadastro">Adicionar Usuário</a>
         <hr />
     </div>
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col" class="w-40">Nome</th>
-                    <th scope="col" class="w-20 text-center">Matrícula</th>
-                    <th scope="col" class="w-20 text-center">Perfil</th>
-                    <th scope="col" class="w-10 text-center">Ativo?</th>
-                    <th scope="col" class="w-10 text-center">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-                <tr>
-                    <td>Chris</td>
-                    <td class="text-center">HTML tables</td>
-                    <td class="text-center">Administrador</td>
-                    <td class="text-center">Sim</td>
-                    <td class="text-center"></td>
-                </tr>
-            </tbody>
-            <tfoot>
-        </table>
-    </div>
+    <div id="divListaUsuarios">
 
-    <div class="d-flex justify-content-center">
-        <ul class="pagination mt-2 mb-4">
-            <li class="pagination-item pagination-item-disabled text-center"><a>&laquo;</a></li>
-            <li class="pagination-item pagination-item-active text-center"><a>1</a></li>
-            <li class="pagination-item text-center"><a>2</a></li>
-            <li class="pagination-item text-center"><a>3</a></li>
-            <li class="pagination-item text-center"><a>4</a></li>
-            <li class="pagination-item text-center"><a>5</a></li>
-            <li class="pagination-item text-center"><a>&raquo;</a></li>
-        </ul>
     </div>
+    <input type="hidden" value="1" id="numeroPagina" />
 </div>

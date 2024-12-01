@@ -77,6 +77,10 @@ html {
     text-align: start;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
 /*Containers principais*/
 .content-container {
     display: flex;
@@ -114,7 +118,7 @@ html {
     border-radius: 0 5px 5px 0;
     box-shadow: 0 4px 4px rgba(0,0,0, 0.25);
     transition: min-width 1s ease;
-    z-index: 900;
+    z-index: 5;
     position: fixed;
     top: 0;
     left: 0;
@@ -376,4 +380,18 @@ label.form-label, label.form-check-label {
     font-weight: 600;
     color: var(--primary-blue-color);
     margin: 0;
+}
+
+/*Tela de Carregamento*/
+#loading {
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0, 0.40);
+    z-index: 10;
+    display: none;
+    justify-content: center;
+    align-items: center;
 }

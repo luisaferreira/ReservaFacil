@@ -8,7 +8,7 @@ namespace ReservaFacil.API.Controllers
 {
     [ApiController]
     [Route("/[controller]")]
-    public class UsuarioController(IUsuarioService usuarioService) : Controller
+    public class UsuarioController(IUsuarioService usuarioService, IUsuarioRepository usuarioRepository) : Controller
     {
         [HttpPost]
         public async Task<IActionResult> Inserir(UsuarioDTO usuarioDto)
@@ -29,6 +29,14 @@ namespace ReservaFacil.API.Controllers
                 return BadRequest("Erro ao criar o usuário");
 
             return CreatedAtAction(nameof(Inserir), new { id = usuarioCriado });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Obter()
+        {
+            var usuarios = await usuarioRepository.ObterAsync();
+
+            return Ok(usuarios);
         }
     }
 }

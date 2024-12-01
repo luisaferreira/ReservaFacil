@@ -1,5 +1,8 @@
-﻿$(document).ready(function() {
-    $("form").submit(function(e) {
+﻿$(document).ready(function () {
+    selecionarPagina('user');
+
+    $("form").submit(function (e) {
+        mostrarCarregamento();
         e.preventDefault();
 
         const form = $(this);
@@ -31,6 +34,9 @@
 
                 let errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
                 errorModal.show();
+            })
+            .done(function () {
+                ocultarCarregamento();
             });
     });
 
