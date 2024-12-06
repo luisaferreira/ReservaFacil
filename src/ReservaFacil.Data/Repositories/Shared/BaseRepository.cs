@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using ReservaFacil.Domain.Interfaces.Repositories.Shared;
+using System.Data;
 
 namespace ReservaFacil.Data.Repositories.Shared
 {

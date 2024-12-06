@@ -1,0 +1,102 @@
+﻿@model ReservaFacil.Application.ViewModels.ListaReservaViewModel;
+
+@{
+    Layout = null;
+}
+
+@if (Model != null && Model.Reservas.Any()) {
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="w-10">Sala</th>
+                    <th scope="col" class="w-20 text-center">Período de Reserva</th>
+                    <th scope="col" class="w-35 text-center">Solicitante</th>
+                    <th scope="col" class="w-15 text-center">Data de Solicitação</th>
+                    <th scope="col" class="w-10 text-center">Status</th>
+                    <th scope="col" class="w-10 text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reserva in Model.Reservas)
+                {
+                    var sala = reserva.Laboratorio ? "Laboratório" : "Sala";
+
+                    <tr>
+                        <td>@sala @reserva.Numero</td>
+                        <td class="text-center">@reserva.DataInicial.ToString("dd/MM/yyyy HH:mm") - @reserva.DataFinal.ToString("HH:mm")</td>
+                        <td class="text-center">@reserva.Solicitante</td>
+                        <td class="text-center">@reserva.DataSolicitacao.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td class="text-center">@reserva.Status</td>
+                        <td class="text-center">
+                            <a class="cursor-pointer" onclick="editarReserva('@reserva.Id')">
+                                <i class="fa-solid fa-pen-to-square text-color-primary"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+        </table>
+    </div>
+
+    <nav class="d-flex justify-content-center">
+        <ul class="pagination mt-2 mb-4">
+            @{
+                int qtdBotoesVisiveis = 5;
+                int primeiraPagina = Math.Max(1, Model.PaginaAtiva - (qtdBotoesVisiveis / 2));
+                int ultimaPagina = Math.Min(Model.QuantidadePaginas, primeiraPagina + qtdBotoesVisiveis - 1);
+
+                if (Model.PaginaAtiva <= (qtdBotoesVisiveis / 2))
+                {
+                    ultimaPagina = Math.Min(Model.QuantidadePaginas, qtdBotoesVisiveis);
+                }
+
+                if (Model.PaginaAtiva + (qtdBotoesVisiveis / 2) >= Model.QuantidadePaginas)
+                {
+                    primeiraPagina = Math.Max(1, Model.QuantidadePaginas - qtdBotoesVisiveis + 1);
+                }
+            }
+
+            @{
+                var voltarAtivo = Model.PaginaAtiva == 1 ? "pagination-item-disabled" : "";
+            }
+
+            <li class="pagination-item text-center @voltarAtivo">
+                <a onclick="alterarPagina(@(Model.PaginaAtiva - 1), @Model.QuantidadePaginas)">&laquo;</a>
+            </li>
+
+            @if (primeiraPagina > 1)
+            {
+                <li class="pagination-item pagination-item-disabled text-center">
+                    <span>...</span>
+                </li>
+            }
+
+            @for (int i = primeiraPagina; i <= ultimaPagina; i++)
+            {
+                var active = i == Model.PaginaAtiva ? "pagination-item-active" : "";
+                <li class="pagination-item text-center @active">
+                    <a onclick="alterarPagina(@i, @Model.QuantidadePaginas)">@i</a>
+                </li>
+            }
+
+            @if (ultimaPagina < Model.QuantidadePaginas)
+            {
+                <li class="pagination-item pagination-item-disabled text-center">
+                    <span>...</span>
+                </li>
+            }
+
+            @{
+                var avancarAtivo = Model.PaginaAtiva == Model.QuantidadePaginas ? "pagination-item-disabled" : "";
+            }
+
+            <li class="pagination-item text-center @avancarAtivo">
+                <a onclick="alterarPagina(@(Model.PaginaAtiva + 1), @Model.QuantidadePaginas)">»</a>
+            </li>
+        </ul>
+    </nav>
+} else {
+    <p class="text-center font-family-primary font-weight-600">Sem reservas!</p>
+}

@@ -29,8 +29,8 @@ public class PerfilRepository : BaseRepository<Perfil>, IPerfilRepository
                                            perm.Nome as PermissaoNome, 
                                            perm.Descricao as Descricao 
                                        FROM Perfil p 
-                                       LEFT JOIN PerfilPermissao pp on p.Id = pp.IdPerfil
-                                       LEFT JOIN Permissao perm on perm.Id = pp.IdPermissao
+                                       LEFT JOIN PerfilPermissao pp on p.Id = pp.PerfilId
+                                       LEFT JOIN Permissao perm on perm.Id = pp.PermissaoId
                            """;
 
         var perfilDictionary = new Dictionary<int, PerfilComPermissoesDTO>();

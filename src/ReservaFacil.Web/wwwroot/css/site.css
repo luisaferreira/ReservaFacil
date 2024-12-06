@@ -8,6 +8,7 @@
     --medium-grey-blue-color: #E1E7EB;
     --light-grey-blue-color: #F1F3F4;
     --light-grey-color: #D9D9D9;
+    --lighter-grey-color: #E4E4E4;
     --primary-font-family: "Inter", sans-serif;
 }
 
@@ -28,9 +29,50 @@
     background: var(--light-color);
 }
 
+/*Fontes*/
+.font-family-primary {
+    font-family: var(--primary-font-family);
+}
+
+.font-weight-100 {
+    font-weight:100;
+}
+
+.font-weight-200 {
+    font-weight: 200;
+}
+
+.font-weight-300 {
+    font-weight: 300;
+}
+
+.font-weight-400 {
+    font-weight: 400;
+}
+
+.font-weight-500 {
+    font-weight: 500;
+}
+
+.font-weight-600 {
+    font-weight: 600;
+}
+
+.font-weight-700 {
+    font-weight: 700;
+}
+
+.font-weight-800 {
+    font-weight: 800;
+}
+
 /*Tamanhos*/
 .w-10 {
     width: 10% !important;
+}
+
+.w-15 {
+    width: 15% !important;
 }
 
 .w-20 {
@@ -39,6 +81,10 @@
 
 .w-30 {
     width: 30% !important;
+}
+
+.w-35 {
+    width: 35% !important;
 }
 
 .w-40 {
@@ -69,6 +115,7 @@ html {
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    font-family: var(--primary-font-family);
     color: var(--bs-secondary-color);
     text-align: end;
 }
@@ -194,10 +241,14 @@ html {
     background: var(--primary-blue-color);
 }
 
-    .btn-primary:hover, .btn-primary:first-child:active, .btn-primary:active, .btn-primary:focus-visible {
+    .btn-primary:hover, .btn-primary:first-child:active, .btn-primary:active, :not(.btn-check) + .btn-primary:active, .btn-primary:focus-visible {
         background-color: var(--primary-blue-shade-color);
         box-shadow: none;
     }
+
+.btn-light {
+    background: var(--lighter-grey-color);
+}
 
 /*Tabela*/
 .table {

@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ReservaFacil.Application\ReservaFacil.Application.csproj" />
     <ProjectReference Include="..\ReservaFacil.Domain\ReservaFacil.Domain.csproj" />
+    <ProjectReference Include="..\ReservaFacil.Helper\ReservaFacil.Helper.csproj" />
   </ItemGroup>
 
 </Project>

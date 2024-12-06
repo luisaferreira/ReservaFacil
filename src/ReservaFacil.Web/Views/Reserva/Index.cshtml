@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ReservaFacil.Domain.Models.Status>
+
+@{
+    Layout = "_Layout";
+}
+
+@await Html.PartialAsync("_Header", new { Titulo = "Reserva de Salas", PaginaInicial = true })
+
+@section Scripts {
+    <script src="~/js/views/Reserva/index.js"></script>
+}
+
+<div class="container mt-4">
+    <div class="text-end">
+        <a class="btn btn-primary" href="/Reserva/Reservar">Reservar Sala</a>
+        <hr />
+    </div>
+    <form id="formPesquisa">
+        <div class="row">
+            <div class="col-md-9 mb-3">
+                <label for="pesquisa" class="form-label">Pesquisa:</label>
+                <input type="text" class="form-control" id="pesquisa" name="pesquisa" />
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="statusReserva" class="form-label">Status de Reserva:</label>
+                <select class="form-select" id="statusReserva" name="statusReserva">
+                    <option value="0"></option>
+                    @foreach (var status in Model){
+                        <option value="@status.Id">@status.Nome</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label for="periodoReserva" class="form-label">Período de Reserva:</label>
+                <input type="text" readonly class="form-control" id="periodoReserva" name="periodoReserva" />
+            </div>
+        </div>
+    </form>
+
+    <div class="text-end">
+        <hr />
+        <input type="button" class="btn btn-light me-2" id="btnLimpar" onclick="limpar()" value="Limpar"/>
+        <input type="button" class="btn btn-primary" id="btnPesquisar" onclick="pesquisar()" value="Pesquisar" />
+    </div>
+
+    <div class="mt-3" id="reservas">
+
+    </div>
+    <input type="hidden" value="1" id="numeroPagina"/>
+</div>
