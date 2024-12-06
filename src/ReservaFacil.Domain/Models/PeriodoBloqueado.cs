@@ -7,6 +7,7 @@ namespace ReservaFacil.Domain.Models
     public class PeriodoBloqueado : Base
     {
         public int SalaId { get; set; }
+        public int DiaSemana { get; set; }
         public TimeOnly HorarioInicial { get; set; }
         public TimeOnly FinalInicial { get; set; }
     }

@@ -23,12 +23,6 @@ function pesquisar() {
     var periodoReserva = $("#periodoReserva").val();
     var [ dataInicial, dataFinal ] = periodoReserva.split(" - ");
 
-    //var dataInicial = $("#periodoReserva").data('daterangepicker').startDate.format('YYYY-MM-DD');
-
-    console.log(periodoReserva)
-    console.log(dataInicial);
-    console.log(dataFinal);
-
     $.ajax({
         type: 'GET',
         url: '/Reserva/Pesquisar?numeroPagina=' + pagina,
@@ -51,4 +45,12 @@ function limpar() {
     $("#pesquisa").val("");
     $("#statusReserva").val("");
     $("#periodoReserva").val("");
+}
+
+function alterarPagina(valor, numeroMaximo) {
+    if (valor > numeroMaximo || valor < 0)
+        return;
+
+    $("#numeroPagina").val(valor);
+    listarUsuarios();
 }
