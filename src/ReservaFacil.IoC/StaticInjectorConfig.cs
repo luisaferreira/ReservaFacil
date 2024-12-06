@@ -16,6 +16,14 @@ namespace ReservaFacil.IoC
             services.AddScoped<IUsuarioPermissaoRepository, UsuarioPermissaoRepository>();
             services.AddScoped<IStatusRepository, StatusRepository>();
             services.AddScoped<IReservaRepository, ReservaRepository>();
+            services.AddScoped<IAcessoRepository, AcessoRepository>();
+            services.AddScoped<ICursoRepository, CursoRepository>();
+            services.AddScoped<IPerfilPermissaoRepository, PerfilPermissaoRepository>();
+            services.AddScoped<IPeriodoBloqueadoRepository, PeriodoBloqueadoRepository>();
+            services.AddScoped<IReservaLogRepository, ReservaLogRepository>();
+            services.AddScoped<ISalaRepository, SalaRepository>();
+            services.AddScoped<IUsuarioCursoRepository, UsuarioCursoRepository>();
+            services.AddScoped<IUsuarioLogRepository, UsuarioLogRepository>();
 
             services.AddScoped<IUsuarioService, UsuarioService>();
         }
