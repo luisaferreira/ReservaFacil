@@ -26,6 +26,6 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=ReservaSala}/{action=Index}/{id?}");
+    pattern: "{controller=Reserva}/{action=Index}/{id?}");
 
 app.Run();

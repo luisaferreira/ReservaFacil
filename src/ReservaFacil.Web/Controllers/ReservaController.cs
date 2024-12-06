@@ -6,11 +6,11 @@ using ReservaFacil.Web.Services;
 
 namespace ReservaFacil.Web.Controllers
 {
-    public class ReservaSalaController : Controller
+    public class ReservaController : Controller
     {
         private readonly ApiService _apiService;
 
-        public ReservaSalaController(IConfiguration configuration)
+        public ReservaController(IConfiguration configuration)
         {
             _apiService = new ApiService(configuration);
         }

@@ -23,14 +23,20 @@ function pesquisar() {
     var periodoReserva = $("#periodoReserva").val();
     var [ dataInicial, dataFinal ] = periodoReserva.split(" - ");
 
+    //var dataInicial = $("#periodoReserva").data('daterangepicker').startDate.format('YYYY-MM-DD');
+
+    console.log(periodoReserva)
+    console.log(dataInicial);
+    console.log(dataFinal);
+
     $.ajax({
         type: 'GET',
-        url: '/ReservaSala/Pesquisar?numeroPagina=' + pagina,
+        url: '/Reserva/Pesquisar?numeroPagina=' + pagina,
         data: {
             pesquisa: pesquisa,
             statusId: statusReserva,
-            dataInicial: dataInicial,
-            dataFinal: dataFinal
+            dataInicial: moment(dataInicial, "DD/MM/YYYY").format("YYYY-MM-DD"),
+            dataFinal: moment(dataFinal, "DD/MM/YYYY").format("YYYY-MM-DD")
         },
         success: function (response) {
             $("#reservas").html(response);
