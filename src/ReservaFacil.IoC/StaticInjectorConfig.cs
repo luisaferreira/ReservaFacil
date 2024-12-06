@@ -15,6 +15,7 @@ namespace ReservaFacil.IoC
             services.AddScoped<IPermissaoRepository, PermissaoRepository>();
             services.AddScoped<IUsuarioPermissaoRepository, UsuarioPermissaoRepository>();
             services.AddScoped<IStatusRepository, StatusRepository>();
+            services.AddScoped<IReservaRepository, ReservaRepository>();
 
             services.AddScoped<IUsuarioService, UsuarioService>();
         }

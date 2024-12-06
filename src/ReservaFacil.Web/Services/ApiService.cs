@@ -14,15 +14,28 @@ public class ApiService
         };
     }
 
-    
+
     public async Task<T> GetDataAsync<T>(string endpoint)
     {
         var response = await _httpClient.GetAsync(endpoint);
-        
+
         if (!response.IsSuccessStatusCode) return default;
-        
+
         var jsonResponse = await response.Content.ReadAsStringAsync();
-        
+
+        return JsonConvert.DeserializeObject<T>(jsonResponse);
+    }
+
+    public async Task<T> GetDataAsync<T>(string endpoint, object data)
+    {
+        var jsonContent = JsonConvert.SerializeObject(data);
+        var content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
+        var response = await _httpClient.PostAsync(endpoint, content);
+
+        if (!response.IsSuccessStatusCode) return default;
+
+        var jsonResponse = await response.Content.ReadAsStringAsync();
+
         return JsonConvert.DeserializeObject<T>(jsonResponse);
     }
 
@@ -31,7 +44,7 @@ public class ApiService
         var jsonContent = JsonConvert.SerializeObject(data);
         var content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
         var response = await _httpClient.PostAsync(endpoint, content);
-        
+
         return response.IsSuccessStatusCode;
     }
 }

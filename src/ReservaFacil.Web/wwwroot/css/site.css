@@ -8,6 +8,7 @@
     --medium-grey-blue-color: #E1E7EB;
     --light-grey-blue-color: #F1F3F4;
     --light-grey-color: #D9D9D9;
+    --lighter-grey-color: #E4E4E4;
     --primary-font-family: "Inter", sans-serif;
 }
 
@@ -26,6 +27,43 @@
 
 .background-light {
     background: var(--light-color);
+}
+
+/*Fontes*/
+.font-family-primary {
+    font-family: var(--primary-font-family);
+}
+
+.font-weight-100 {
+    font-weight:100;
+}
+
+.font-weight-200 {
+    font-weight: 200;
+}
+
+.font-weight-300 {
+    font-weight: 300;
+}
+
+.font-weight-400 {
+    font-weight: 400;
+}
+
+.font-weight-500 {
+    font-weight: 500;
+}
+
+.font-weight-600 {
+    font-weight: 600;
+}
+
+.font-weight-700 {
+    font-weight: 700;
+}
+
+.font-weight-800 {
+    font-weight: 800;
 }
 
 /*Tamanhos*/
@@ -206,6 +244,10 @@ html {
         background-color: var(--primary-blue-shade-color);
         box-shadow: none;
     }
+
+.btn-light {
+    background: var(--lighter-grey-color);
+}
 
 /*Tabela*/
 .table {
