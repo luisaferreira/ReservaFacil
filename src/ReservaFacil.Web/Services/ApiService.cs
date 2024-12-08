@@ -14,7 +14,6 @@ public class ApiService
         };
     }
 
-
     public async Task<T> GetDataAsync<T>(string endpoint)
     {
         var response = await _httpClient.GetAsync(endpoint);

@@ -1,5 +1,5 @@
-﻿using ReservaFacil.Domain.Models.Shared;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using ReservaFacil.Domain.Models.Shared;
 
 namespace ReservaFacil.Domain.Models
 {
@@ -7,8 +7,8 @@ namespace ReservaFacil.Domain.Models
     public class Sala : Base
     {
         public int CursoId { get; set; }
-        public string Bloco { get; set; }
-        public string Numero { get; set; }
+        public string? Bloco { get; set; }
+        public int Numero { get; set; }
         public bool Laboratorio { get; set; }
     }
 }

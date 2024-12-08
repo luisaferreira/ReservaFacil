@@ -1,0 +1,76 @@
+﻿#horariosContainer {
+    overflow-y: auto;
+    max-height: 50vh;
+    box-sizing: border-box;
+}
+
+div[id^="horarioTemplate"] {
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.btn-addHorario, .btn-removeHorario {
+    background-color: transparent;
+    border: 2px solid var(--light-grey-color);
+    color: var(--light-grey-color);
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-addHorario, .btn-removeHorario i {
+    font-size: 1rem !important;
+}
+
+.btn-addHorario:hover, .btn-removeHorario:hover {
+    background-color: var(--light-grey-color);
+    color: white;
+}
+
+.btn-removeHorario {
+    border: 2px solid var(--light-red-color);
+    color: var(--light-red-color);
+    padding: 6px;
+    font-size: 1.25rem;
+    margin-left: 10px;
+}
+
+.btn-removeHorario:hover {
+    background-color: var(--light-red-color);
+    border: 2px solid var(--light-red-color);
+    color: white;
+}
+
+#addHorario {
+    display: block;
+    font-size: .5rem;
+}
+
+@media (max-width: 1200px) {
+    #horariosContainer {
+        max-height: 40vh;
+    }
+}
+
+@media (max-width: 992px) {
+    #horariosContainer {
+        max-height: 30vh;
+    }
+}
+
+@media (max-width: 768px) {
+    #horariosContainer {
+        max-height: 25vh;
+    }
+}
+
+@media (max-width: 480px) {
+    #horariosContainer {
+        max-height: 20vh;
+    }
+}
