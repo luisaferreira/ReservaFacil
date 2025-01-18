@@ -6,9 +6,9 @@ namespace ReservaFacil.Domain.Models
     [Table("Reserva")]
     public class Reserva : Base
     {
-        public int UsuarioId { get; set; }
-        public int SalaId { get; set; }
-        public int StatusId { get; set; }
+        public int IdUsuario { get; set; }
+        public int IdSala { get; set; }
+        public int IdStatus { get; set; }
         public DateTime DataInicial { get; set; }
         public DateTime DataFinal { get; set; }
         public DateTime DataInclusao { get; set; }

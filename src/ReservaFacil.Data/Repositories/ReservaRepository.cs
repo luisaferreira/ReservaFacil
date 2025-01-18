@@ -30,16 +30,16 @@ namespace ReservaFacil.Data.Repositories
             sql.AppendLine("    S.Laboratorio,");
             sql.AppendLine("    U.Nome AS Solicitante,");
             sql.AppendLine("    ST.Nome AS Status,");
-            sql.AppendLine("    ST.Id AS StatusId");
+            sql.AppendLine("    ST.Id AS IdStatus");
             sql.AppendLine("FROM RESERVA R");
             sql.AppendLine("JOIN Usuario U");
-            sql.AppendLine("    ON R.UsuarioId = U.ID");
+            sql.AppendLine("    ON R.IdUsuario = U.Id");
             sql.AppendLine("JOIN Sala S");
-            sql.AppendLine("    ON S.Id = R.SalaId");
+            sql.AppendLine("    ON S.Id = R.IdSala");
             sql.AppendLine("JOIN Curso C");
-            sql.AppendLine("    ON C.Id = S.CursoId");
+            sql.AppendLine("    ON C.Id = S.IdCurso");
             sql.AppendLine("JOIN Status ST");
-            sql.AppendLine("    ON ST.Id = R.StatusId");
+            sql.AppendLine("    ON ST.Id = R.IdStatus");
             sql.AppendLine("WHERE (U.Nome LIKE @pesquisa");
             sql.AppendLine("OR S.Bloco LIKE @pesquisa");
             sql.AppendLine("OR S.Numero LIKE @pesquisa");
@@ -47,7 +47,7 @@ namespace ReservaFacil.Data.Repositories
 
             if (statusId > 0)
             {
-                sql.AppendLine("AND R.StatusId = @statusId");
+                sql.AppendLine("AND R.IdStatus = @statusId");
             }
 
             if (dataInicial.HasValue && dataFinal.HasValue)

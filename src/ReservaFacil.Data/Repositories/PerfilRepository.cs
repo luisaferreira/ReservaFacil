@@ -17,7 +17,7 @@ public class PerfilRepository : BaseRepository<Perfil>, IPerfilRepository
         : base(configuration)
             => _configuration = configuration;
    
-    public async Task<List<(Perfil perfil, IEnumerable<Permissao> permissoes)>> GetPerfilComPermissoesAsync()
+    public async Task<List<(Perfil perfil, IEnumerable<Permissao> permissoes)>> ObterPerfilComPermissoesAsync()
     {
         var connection = new SqlConnection(_configuration.GetConnectionString("ReservaFacil")); 
 

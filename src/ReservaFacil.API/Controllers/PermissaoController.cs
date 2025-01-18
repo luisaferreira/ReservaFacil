@@ -13,7 +13,7 @@ public class PermissaoController : Controller
         => _permissaoRepository = permissaoRepository;
 
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> Obter()
     {
         var permissoes = await _permissaoRepository.ObterAsync();
 

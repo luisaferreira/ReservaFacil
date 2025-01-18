@@ -6,8 +6,8 @@ namespace ReservaFacil.Domain.Models
     [Table("ReservaLog")]
     public class ReservaLog : Base
     {
-        public int ReservaId { get; set; }
-        public int StatusId { get; set; }
+        public int IdReserva { get; set; }
+        public int IdStatus { get; set; }
         public DateTime DataAcao { get; set; }
     }
 }

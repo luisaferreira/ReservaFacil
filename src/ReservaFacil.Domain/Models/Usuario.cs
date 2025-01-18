@@ -6,7 +6,7 @@ namespace ReservaFacil.Domain.Models
     [Table("Usuario")]
     public class Usuario : Base
     {
-        public int PerfilId { get; set; }
+        public int IdPerfil { get; set; }
         public string? Nome { get; set; }
         public string? Email { get; set; }
         public string? Matricula { get; set; }
