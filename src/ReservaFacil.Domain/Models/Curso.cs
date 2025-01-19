@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using ReservaFacil.Domain.Models.Shared;
 
-namespace ReservaFacil.Domain.Models
+namespace ReservaFacil.Domain.Models;
+
+[Table("Curso")]
+public class Curso : Base
 {
-    [Table("Curso")]
-    public class Curso : Base
-    {
-        public string? Nome { get; set; }
-    }
+    public int IdNivelGraduacao { get; set; }
+    public string? Nome { get; set; }
 }
