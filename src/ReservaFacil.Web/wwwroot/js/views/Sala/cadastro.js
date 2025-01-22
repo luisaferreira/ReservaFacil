@@ -1,39 +1,42 @@
 ﻿let contaId = 1;
 
-document.getElementById('addHorario').addEventListener('click', function(e) {
-    e.preventDefault();
+$(document).ready(function () {
+    selecionarPagina('room');
 
-    const horariosContainer = document.getElementById('horariosContainer');
-    const horarioTemplate = document.getElementById('horarioTemplate');
+    $("#btnAdicionarHorario").on("click", function () {
+        const horariosContainer = document.getElementById('horariosContainer');
+        const horarioTemplate = document.getElementById('horarioTemplate');
 
-    if (horariosContainer && $(horarioTemplate).css('display') === 'none') {
-        $(horarioTemplate).css('display', 'block');
-        adicionaEventoDeRemoverHorario(horarioTemplate, true);
+        if (horariosContainer && $(horarioTemplate).css('display') === 'none') {
+            $(horarioTemplate).css('display', 'block');
+            adicionaEventoDeRemoverHorario(horarioTemplate, true);
+            verificarCamposPreenchidos();
+            return;
+        }
+
+        const novoHorario = horarioTemplate.cloneNode(true);
+        novoHorario.id = `horarioTemplate_${contaId}`;
+
+        adicionaEventoDeRemoverHorario(novoHorario);
+        atualizarCamposDeHorario(novoHorario, contaId);
+
+        horariosContainer.appendChild(novoHorario);
+        contaId++;
+
         verificarCamposPreenchidos();
-        return;
-    }
+    })
 
-    const novoHorario = horarioTemplate.cloneNode(true);
-    novoHorario.id = `horarioTemplate_${contaId}`;
+})
 
-    adicionaEventoDeRemoverHorario(novoHorario);
-    atualizarCamposDeHorario(novoHorario, contaId);
-
-    horariosContainer.appendChild(novoHorario);
-    contaId++;
-    
-    verificarCamposPreenchidos();
-});
-
-document.getElementById('horariosContainer').addEventListener('input', function(e) {
+document.getElementById('horariosContainer').addEventListener('input', function (e) {
     validaHorarioFinalMaiorQueInicial(e.target.name);
     verificarCamposPreenchidos();
 });
 
-function validaHorarioFinalMaiorQueInicial(nomeElemento){
+function validaHorarioFinalMaiorQueInicial(nomeElemento) {
     const indexRegx = nomeElemento.match(/\[(\d+)]/);
 
-    if(indexRegx) {
+    if (indexRegx) {
         const index = indexRegx[1];
 
         const horarioInicial = document.querySelector(`input[name="HorarioInicial[${index}]"]`);
@@ -42,7 +45,7 @@ function validaHorarioFinalMaiorQueInicial(nomeElemento){
         if (horarioInicial && horarioFinal) {
             const horarioInicialValue = new Date(horarioInicial.value);
             const horarioFinalValue = new Date(horarioFinal.value);
-            
+
             if (horarioFinalValue <= horarioInicialValue) {
                 horarioFinal.value = "";
                 alert('O horário final deve ser maior que o horário inicial.');
@@ -54,8 +57,8 @@ function validaHorarioFinalMaiorQueInicial(nomeElemento){
 function adicionaEventoDeRemoverHorario(horarioElemento, isDefault = false) {
     const removeButton = horarioElemento.querySelector('.btn-removeHorario');
     if (removeButton) {
-        removeButton.addEventListener('click', function() {
-            if(!isDefault){
+        removeButton.addEventListener('click', function () {
+            if (!isDefault) {
                 horarioElemento.remove();
             } else {
                 $(horarioTemplate).css('display', 'none');
@@ -65,7 +68,7 @@ function adicionaEventoDeRemoverHorario(horarioElemento, isDefault = false) {
                 horarioFinalInput.value = "";
             }
             verificarCamposPreenchidos();
-        });    
+        });
     }
 }
 
@@ -78,8 +81,10 @@ function atualizarCamposDeHorario(horarioElemento, id) {
 
     horarioInicialLabel.setAttribute('for', `HorarioInicial[${id}]`);
     horarioInicialInput.setAttribute('name', `HorarioInicial[${id}]`);
+    horarioInicialInput.setAttribute('id', `HorarioInicial[${id}]`);
     horarioFinalLabel.setAttribute('for', `HorarioFinal[${id}]`);
     horarioFinalInput.setAttribute('name', `HorarioFinal[${id}]`);
+    horarioFinalInput.setAttribute('id', `HorarioFinal[${id}]`);
 
     horarioInicialInput.value = "";
     horarioFinalInput.value = "";
@@ -92,13 +97,14 @@ function verificarCamposPreenchidos() {
 
     for (let i = 0; i < horariosIniciais.length; i++) {
         const nameHorarioInicial = horariosIniciais[i].name;
-        
-        if(nameHorarioInicial === "HorarioInicial[0]" && $(horarioTemplate).css('display') === 'none'){ 
+
+        if (nameHorarioInicial === "HorarioInicial[0]" && $(horarioTemplate).css('display') === 'none') {
             continue;
-        } 
-        
+        }
+
         if (!horariosIniciais[i].value || !horariosFinais[i].value) {
-            addHorarioButton.disabled = true;
+            $("#btnAdicionarHorario").attr("disabled", true);
+
             return;
         }
     }
@@ -108,7 +114,7 @@ function verificarCamposPreenchidos() {
         limparUltimosCamposDeHorario(horariosIniciais, horariosFinais);
         alert('O novo intervalo se sobrepõe a um horário já cadastrado. Escolha um horário fora do intervalo existente.');
     } else {
-        addHorarioButton.disabled = false;
+        $("#btnAdicionarHorario").attr("disabled", false);
     }
 }
 
@@ -124,15 +130,15 @@ function verificarSobreposicao(horariosIniciais, horariosFinais) {
 
                 if (
                     (horarioInicial >= outroHorarioInicial && horarioInicial < outroHorarioFinal) ||
-                    (horarioFinal > outroHorarioInicial && horarioFinal <= outroHorarioFinal) || 
-                    (horarioInicial < outroHorarioInicial && horarioFinal > outroHorarioFinal) 
+                    (horarioFinal > outroHorarioInicial && horarioFinal <= outroHorarioFinal) ||
+                    (horarioInicial < outroHorarioInicial && horarioFinal > outroHorarioFinal)
                 ) {
-                    return true; 
+                    return true;
                 }
             }
         }
     }
-    return false; 
+    return false;
 }
 
 function limparUltimosCamposDeHorario(horariosIniciais, horariosFinais) {

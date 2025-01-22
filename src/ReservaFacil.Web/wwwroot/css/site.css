@@ -238,6 +238,11 @@ html {
         transform: scale(0.95);
     }
 
+.btn-round {
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .btn-primary {
     background: var(--primary-blue-color);
 }
