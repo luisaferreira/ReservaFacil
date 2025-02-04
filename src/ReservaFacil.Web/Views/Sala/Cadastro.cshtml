@@ -54,7 +54,7 @@
 
         <div class="row">
             <div class="col-md-12 mb-3">
-                <label for="HorariosBloqueados" class="form-label">Horários Bloqueados:</label>
+                <label for="HorariosBloqueados" class="form-label">Períodos Bloqueados:</label>
                 <a class="btn btn-round btn-light d-table" id="btnAdicionarHorario">
                    <i class="fa-solid fa-plus"></i>
                 </a>
@@ -66,15 +66,11 @@
                 <hr/>
 
                 <div class="row">
-                    <div class="col-md-3">
-                        <label for="HorarioInicial[0]" class="form-label">Horário Inicial:</label>
-                        <input class="form-control" type="time" name="HorarioInicial[0]" id="HorarioInicial[0]" />
+                    <div class="col-md-4">
+                        <label for="Periodo[0]" class="form-label">Períodos:</label>
+                        <input class="form-control txtPeriodo" type="text" name="Periodo[0]" id="Periodo[0]" />
                     </div>
-                    <div class="col-md-3">
-                        <label for="HorarioFinal[0]" class="form-label">Horário Final:</label>
-                        <input class="form-control" type="time" name="HorarioFinal[0]" id="HorarioFinal[0]" />
-                    </div>
-                    <div class="col-md-6 justify-content-end d-flex align-items-center">
+                    <div class="col-md-8 justify-content-end d-flex align-items-center">
                         <a class="btn btn-round btn-danger btn-removeHorario" id="btn-removeHorario">
                             <i class="fa-solid fa-trash"></i>
                         </a>
