@@ -14,7 +14,7 @@ public class PerfilController : Controller
         => _perfilRepository = perfilRepository;
 
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> Obter()
     {
         var perfis = await _perfilRepository.ObterAsync();
 
@@ -25,9 +25,9 @@ public class PerfilController : Controller
     }
 
     [HttpGet("perfil-com-permissoes")]
-    public async Task<IActionResult> GetPerfilComPermissoes()
+    public async Task<IActionResult> ObterPerfilComPermissoes()
     {
-        var perfisComPermissoes  = await _perfilRepository.GetPerfilComPermissoesAsync();
+        var perfisComPermissoes  = await _perfilRepository.ObterPerfilComPermissoesAsync();
         
         if(perfisComPermissoes.Count == 0)
             return NoContent();

@@ -5,7 +5,7 @@ namespace ReservaFacil.Domain.Models;
 [Table("UsuarioPermissao")]
 public class UsuarioPermissao
 {
-    public int UsuarioId {get; set;}
+    public int IdUsuario {get; set;}
     
-    public int PermissaoId {get; set;}
+    public int IdPermissao {get; set;}
 }

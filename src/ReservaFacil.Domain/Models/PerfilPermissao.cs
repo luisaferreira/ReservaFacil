@@ -5,7 +5,7 @@ namespace ReservaFacil.Domain.Models
     [Table("PerfilPermissao")]
     public class PerfilPermissao
     {
-        public int PerfilId { get; set; }
-        public int PermissaoId { get; set; }
+        public int IdPerfil { get; set; }
+        public int IdPermissao { get; set; }
     }
 }

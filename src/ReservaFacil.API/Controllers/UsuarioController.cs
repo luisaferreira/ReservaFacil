@@ -15,7 +15,7 @@ namespace ReservaFacil.API.Controllers
         {
             var usuario = new Usuario
             {
-                PerfilId = (int)usuarioDto.PerfilId!,
+                IdPerfil = (int)usuarioDto.PerfilId!,
                 Nome = usuarioDto.Nome,
                 Email = usuarioDto.Email,
                 Matricula = usuarioDto.Matricula,

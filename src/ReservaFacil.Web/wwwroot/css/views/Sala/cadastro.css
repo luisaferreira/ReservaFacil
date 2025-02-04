@@ -1,0 +1,60 @@
+﻿#horariosContainer {
+    overflow-y: auto;
+    max-height: 50vh;
+    box-sizing: border-box;
+}
+
+div[id^="horarioTemplate"] {
+    padding: 0 15px;
+}
+
+.btn-addHorario {
+    background-color: transparent;
+    border: 2px solid var(--light-grey-color);
+    color: var(--light-grey-color);
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-addHorario{
+    font-size: 1rem !important;
+}
+
+.btn-addHorario:hover{
+    background-color: var(--light-grey-color);
+    color: white;
+}
+
+#addHorario {
+    display: block;
+    font-size: .5rem;
+}
+
+@media (max-width: 1200px) {
+    #horariosContainer {
+        max-height: 40vh;
+    }
+}
+
+@media (max-width: 992px) {
+    #horariosContainer {
+        max-height: 30vh;
+    }
+}
+
+@media (max-width: 768px) {
+    #horariosContainer {
+        max-height: 25vh;
+    }
+}
+
+@media (max-width: 480px) {
+    #horariosContainer {
+        max-height: 20vh;
+    }
+}

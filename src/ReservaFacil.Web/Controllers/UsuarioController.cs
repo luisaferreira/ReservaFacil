@@ -6,14 +6,9 @@ using ReservaFacil.Web.Services;
 
 namespace ReservaFacil.Web.Controllers
 {
-    public class UsuarioController : Controller
+    public class UsuarioController(IConfiguration configuration) : Controller
     {
-        private readonly ApiService _apiService;
-
-        public UsuarioController(IConfiguration configuration)
-        {
-            _apiService = new ApiService(configuration);
-        }
+        private readonly ApiService _apiService = new(configuration);
 
         public IActionResult Index()
         {

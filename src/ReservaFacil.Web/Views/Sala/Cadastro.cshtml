@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ReservaFacil.Domain.Models.Curso>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Adicionar Sala";
+}
+
+<link rel="stylesheet" href="~/css/site.css">
+<link rel="stylesheet" href="~/css/views/Sala/cadastro.css">
+
+@await Html.PartialAsync("_Header", new { Titulo = "Adicionar Sala", PaginaInicial = false })
+
+<div class="container mt-4">
+    <form id="salaForm" novalidate>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="Numero" class="form-label">Número:</label>
+                <input type="number" class="form-control" id="Numero" name="Numero" placeholder="Digite o número"
+                maxlength="2"/>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="Bloco" class="form-label">Bloco:</label>
+                <input type="text" class="form-control" id="Bloco" name="Bloco" placeholder="Digite o Bloco"
+                maxlength="1"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="curso" class="form-label">Curso:</label>
+                @foreach (var curso in Model){
+                    var idCurso = "cbCurso" + curso.Id;
+                    <div class="form-check" >
+                        <input class="form-check-input"
+                               type="checkbox"
+                               id="@idCurso"
+                               name="curso"
+                               value="@curso.Id" />
+                        <label class="form-check-label" for="@idCurso">
+                            @curso.Nome
+                        </label>
+                    </div>
+                    }
+            </div>
+
+            <div class="col-md-6 d-flex">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="Laboratorio" checked>
+                    <label class="form-check-label" for="Laboratorio">Laboratório</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label for="HorariosBloqueados" class="form-label">Períodos Bloqueados:</label>
+                <a class="btn btn-round btn-light d-table" id="btnAdicionarHorario">
+                   <i class="fa-solid fa-plus"></i>
+                </a>
+            </div>
+        </div>
+
+        <div id="horariosContainer">
+            <div id="horarioTemplate" class="ms-3 horario-block" style="display: none;">
+                <hr/>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="Periodo[0]" class="form-label">Períodos:</label>
+                        <input class="form-control txtPeriodo" type="text" name="Periodo[0]" id="Periodo[0]" />
+                    </div>
+                    <div class="col-md-8 justify-content-end d-flex align-items-center">
+                        <a class="btn btn-round btn-danger btn-removeHorario" id="btn-removeHorario">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* <div id="horariosContainer">
+            <div id="horarioTemplate" class="mb-3 horario-block" >
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="HorarioInicial[0]" class="form-label">Horário Inicial:</label>
+                        <input type="datetime-local" name="HorarioInicial[0]" class="form-control" required
+                               aria-label="Horário Inicial">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="HorarioFinal[0]" class="form-label">Horário Final:</label>
+                        <div class="d-flex align-items-center">
+                            <input type="datetime-local" name="HorarioFinal[0]" class="form-control" required
+                                   aria-label="Horário Final">
+                            <button class="btn-removeHorario btn btn-light" type="button" aria-label="Remover horário">
+                                <i class="fa-solid fa-x"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> *@
+
+        <hr/>
+
+        <div class="mt-4 d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/views/Sala/cadastro.js"></script>
+}

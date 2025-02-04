@@ -23,8 +23,8 @@ namespace ReservaFacil.Domain.Services
 
                 var permissoesUsuario = permissoes.Select(x => new UsuarioPermissao
                 {
-                    UsuarioId = idUsuario,
-                    PermissaoId = x.Id
+                    IdUsuario = idUsuario,
+                    IdPermissao = x.Id
                 }).ToList();
 
                 foreach (var permissaoUsuario in permissoesUsuario)

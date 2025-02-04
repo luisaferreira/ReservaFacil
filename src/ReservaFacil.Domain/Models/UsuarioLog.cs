@@ -6,7 +6,7 @@ namespace ReservaFacil.Domain.Models
     [Table("UsuarioLog")]
     public class UsuarioLog : Base
     {
-        public int UsuarioId { get; set; }
+        public int IdUsuario { get; set; }
         public string Acao { get; set; }
         public DateTime DataAcao { get; set; }
 

@@ -25,7 +25,7 @@
                     <tr>
                         <td>@usuario.Nome</td>
                         <td class="text-center">@usuario.Matricula</td>
-                        <td class="text-center">@Model.Perfis.FirstOrDefault(x => x.Id == usuario.PerfilId).Nome</td>
+                        <td class="text-center">@Model.Perfis.FirstOrDefault(x => x.Id == usuario.IdPerfil).Nome</td>
                         <td class="text-center">@ativo</td>
                         <td class="text-center">
                             <a class="cursor-pointer" onclick="editarUsuario(@usuario.Id)">

@@ -6,14 +6,9 @@ using ReservaFacil.Web.Services;
 
 namespace ReservaFacil.Web.Controllers
 {
-    public class ReservaController : Controller
+    public class ReservaController(IConfiguration configuration) : Controller
     {
-        private readonly ApiService _apiService;
-
-        public ReservaController(IConfiguration configuration)
-        {
-            _apiService = new ApiService(configuration);
-        }
+        private readonly ApiService _apiService = new ApiService(configuration);
 
         public async Task<IActionResult> Index()
         {

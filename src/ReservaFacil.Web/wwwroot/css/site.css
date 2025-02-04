@@ -1,4 +1,4 @@
-/*Variáveis*/
+/*Variï¿½veis*/
 :root {
     --primary-blue-color: #477998;
     --primary-blue-shade-color: #365d73;
@@ -8,6 +8,7 @@
     --medium-grey-blue-color: #E1E7EB;
     --light-grey-blue-color: #F1F3F4;
     --light-grey-color: #D9D9D9;
+    --light-red-color: #F44336;
     --lighter-grey-color: #E4E4E4;
     --primary-font-family: "Inter", sans-serif;
 }
@@ -227,7 +228,7 @@ html {
     font-weight: bold;
 }
 
-/*Botão*/
+/*Botao*/
 .btn {
     font-family: "Inter", sans-serif;
     border: none;
@@ -237,11 +238,16 @@ html {
         transform: scale(0.95);
     }
 
+.btn-round {
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .btn-primary {
     background: var(--primary-blue-color);
 }
 
-    .btn-primary:hover, .btn-primary:first-child:active, .btn-primary:active, :not(.btn-check) + .btn-primary:active, .btn-primary:focus-visible {
+    .btn-primary:hover, .btn-primary:first-child:active, .btn-primary:active, .btn-primary:focus-visible {
         background-color: var(--primary-blue-shade-color);
         box-shadow: none;
     }
@@ -277,7 +283,7 @@ html {
         background: var(--light-grey-blue-color);
     }
 
-/*Paginação*/
+/*Paginacaoo*/
 .pagination-item {
     margin-right: .5rem;
     border: 1px solid var(--light-grey-color);
@@ -311,7 +317,7 @@ html {
     cursor: default;
 }
 
-/*Formulário*/
+/*Formulario*/
 .form-label {
     font-weight: 600;
 }
