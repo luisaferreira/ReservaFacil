@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutVazio.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/views/Login/index.css" />
+}
+
+<div class="w-100 h-100 d-flex justify-content-center align-items-center background-light-grey">
+    <div class="login-container background-light d-flex justify-content-between align-items-center px-5">
+        <img class="img-login flex-grow-0" src="~/images/login-seguro.svg" alt="" />
+        <div class="login-content-container flex-grow-1">
+            <div class="login-title-container mb-5">
+                <h1 class="text-color-primary font-family-primary mb-0">Bem vindo!</h1>
+                <h5 class="text-color-lighter-primary font-family-primary">Acesse sua conta.</h5>
+            </div>
+            <div class="login-form-container">
+                <div class="mb-2">
+                    <input type="email" class="form-control" placeholder="name@example.com">
+                </div>
+                <div>
+                    <input type="email" class="form-control" placeholder="name@example.com">
+                </div>
+                <div class="text-end mb-3">
+                    <a href="#"><small>Primeiro acesso ou esqueceu a senha?</small></a>
+                </div>
+                <input type="button" class="btn btn-primary w-100 mt-4 pt-2 pb-2" value="Entrar" />
+            </div>
+        </div>
+    </div>
+</div>

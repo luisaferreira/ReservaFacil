@@ -1,6 +1,7 @@
 /*Vari�veis*/
 :root {
     --primary-blue-color: #477998;
+    --lighter-primary-blue-color: #91afc1;
     --primary-blue-shade-color: #365d73;
     --dark-blue-color: #121F26;
     --light-color: #FFF;
@@ -18,6 +19,10 @@
     color: var(--primary-blue-color);
 }
 
+.text-color-lighter-primary {
+    color: var(--lighter-primary-blue-color);
+}
+
 .text-color-light {
     color: var(--light-color);
 }
@@ -28,6 +33,10 @@
 
 .background-light {
     background: var(--light-color);
+}
+
+.background-light-grey {
+    background: var(--light-grey-blue-color);
 }
 
 /*Fontes*/
